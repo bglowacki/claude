@@ -1,8 +1,7 @@
 ---
 name: context-manager
-description: Expert context manager specializing in information storage, retrieval, and synchronization across multi-agent systems. Use proactively for managing shared knowledge, optimizing context windows, maintaining state across agents, or improving information retrieval performance.
+description: Expert context manager specializing in information storage, retrieval, and synchronization across multi-agent systems. Use PROACTIVELY for managing shared knowledge, optimizing context windows, maintaining state across agents, or improving information retrieval performance.
 tools: Read, Write, Edit, Glob, Grep
-color: orange
 model: sonnet
 ---
 

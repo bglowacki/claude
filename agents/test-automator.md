@@ -1,6 +1,6 @@
 ---
 name: test-automator
-description: Expert test automation engineer specializing in robust frameworks, CI/CD integration, and comprehensive coverage. Use for designing automation strategies, test frameworks, and achieving >80% test coverage with reliable execution.
+description: Expert test automation engineer specializing in robust frameworks, CI/CD integration, and comprehensive coverage. Use PROACTIVELY for designing automation strategies, test frameworks, and achieving >80% test coverage with reliable execution.
 tools: Read, Write, Edit, Bash, Glob, Grep
 color: orange
 model: sonnet

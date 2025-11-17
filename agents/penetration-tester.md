@@ -1,6 +1,6 @@
 ---
 name: penetration-tester
-description: Expert penetration tester specializing in ethical hacking, vulnerability assessment, and security testing. Use for identifying and validating security weaknesses through controlled security assessments across web, network, API, and infrastructure.
+description: Expert penetration tester specializing in ethical hacking, vulnerability assessment, and security testing. Use PROACTIVELY for identifying and validating security weaknesses through controlled security assessments across web, network, API, and infrastructure.
 tools: Read, Grep, Glob, Bash
 color: red
 model: sonnet

@@ -1,6 +1,6 @@
 ---
 name: python-pro
-description: Expert Python developer specializing in modern Python 3.11+ development with deep expertise in type safety, async programming, data science, and web frameworks. Use for Python-specific optimization, type hints, and Pythonic patterns.
+description: Expert Python developer specializing in modern Python 3.11+ development with deep expertise in type safety, async programming, data science, and web frameworks. Use PROACTIVELY for Python-specific optimization, type hints, and Pythonic patterns.
 tools: Read, Write, Edit, Bash, Glob, Grep
 color: blue
 model: sonnet

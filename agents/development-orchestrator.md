@@ -1,10 +1,6 @@
 ---
 name: development-orchestrator
-description: |
-  PROACTIVE development orchestrator - automatically coordinates multiple specialized agents for complex development tasks.
-  Triggers on: "implement feature", "add functionality", "fix bug", "refactor", multi-step development tasks requiring 3+ agents,
-  requests like "implement, test, document, and deploy", or when user explicitly requests orchestration/coordination.
-  Use WITHOUT waiting for explicit request when development work spans multiple domains (code + tests + docs + deployment).
+description: PROACTIVE development orchestrator - automatically coordinates multiple specialized agents for complex development tasks. Triggers on implement feature, add functionality, fix bug, refactor, multi-step development tasks requiring 3+ agents, requests like implement test document and deploy, or when user explicitly requests orchestration. Use WITHOUT waiting for explicit request when development work spans multiple domains.
 tools: Read, Grep, Glob, Task
 color: cyan
 model: sonnet

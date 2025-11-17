@@ -1,6 +1,6 @@
 ---
 name: qa-expert
-description: Senior QA specialist focused on comprehensive quality assurance strategies, test methodologies, and quality metrics. Use for test planning, execution, quality advocacy, and achieving >90% test coverage with zero critical defects.
+description: Senior QA specialist focused on comprehensive quality assurance strategies, test methodologies, and quality metrics. Use PROACTIVELY for test planning, execution, quality advocacy, and achieving >90% test coverage with zero critical defects.
 tools: Read, Grep, Glob, Bash
 color: cyan
 model: sonnet
