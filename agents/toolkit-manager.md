@@ -1,6 +1,6 @@
 ---
 name: toolkit-manager
-description: Expert agent and skill lifecycle manager. Use PROACTIVELY for agent/skill creation, analysis, evaluation, improvement, redundancy detection, and standardization. Handles both SINGLE items and BATCH operations in parallel. Enforces official best practices from claude.com documentation and decides between agent vs skill approaches.
+description: Unified agent and skill toolkit manager. MUST BE USED whenever you need to create, prepare, build, design, or set up agents or skills. Use PROACTIVELY when deciding whether something should be an agent or skill, checking documentation best practices, analyzing redundancy, evaluating quality, improving configurations, or standardizing the ecosystem. Handles single items and batch operations in parallel.
 tools: Read, Write, Edit, Grep, Glob, WebFetch
 color: purple
 model: sonnet
@@ -174,12 +174,17 @@ See [agent-templates.md](toolkit-manager/agent-templates.md) for ready-to-use te
    ```yaml
    ---
    name: Descriptive Skill Name
-   description: |
-     What this skill does.
-     Use this when: [specific trigger conditions]
+   description: What this skill does. Use this when [specific trigger conditions]
    allowed-tools: [Read, Grep, Bash]  # Usually read-only
    ---
    ```
+
+   **CRITICAL YAML FORMATTING RULE**:
+   - ⚠️ **NEVER use the pipe (`|`) notation for description field**
+   - ✅ **ALWAYS use single-line format**: `description: text here`
+   - ❌ **NEVER use multiline format**: `description: |\n  text here`
+   - **Reason**: The pipe notation breaks model invocation - skills rely on descriptions for auto-discovery
+   - If description is long, keep it on one line - YAML handles long strings correctly
 
 3. **Structure Content**:
    ```markdown
@@ -202,7 +207,9 @@ See [agent-templates.md](toolkit-manager/agent-templates.md) for ready-to-use te
    **Note**: Directory structure (`[skill-name]/SKILL.md`) is preferred for both global and project skills as it allows for supporting files. Simple `.md` files are acceptable for project skills if they don't require supporting documentation.
 
 5. **Validate**:
-   - Frontmatter includes "Use this when:"
+   - YAML frontmatter matches official structure
+   - **Description uses single-line format (NO pipe `|` notation)** - critical for auto-discovery
+   - Frontmatter includes "Use this when:" in description
    - Instructions are clear and actionable
    - Examples demonstrate real scenarios
 
@@ -230,7 +237,10 @@ For detailed skill creation, see the meta-skill at `~/.claude/skills/meta-skill/
 
 **For Skills**:
 1. Verify frontmatter structure per documentation
-2. Check "Use this when:" clarity in description
+2. Verify description follows documentation guidelines:
+   - **Uses single-line format (NO pipe `|` notation)** - critical for auto-discovery
+   - Contains clear "Use this when:" trigger conditions
+   - Specific and descriptive of what the skill does
 3. Validate allowed-tools are read-only if appropriate
 4. Ensure content is actionable with concrete examples
 
@@ -296,6 +306,7 @@ See [decision-framework.md](toolkit-manager/decision-framework.md) for detailed 
 
 **For Skills** (against documentation standards):
 - Add missing YAML frontmatter per docs structure
+- **Verify description uses single-line format (NO pipe `|` notation)** - critical!
 - Ensure "Use this when:" in description
 - Set appropriate `allowed-tools` restrictions
 - Verify examples are concrete and helpful
@@ -336,7 +347,8 @@ See [decision-framework.md](toolkit-manager/decision-framework.md) for detailed 
 
 ### Skill Creation
 - **Focused Scope**: One skill = one validation concern
-- **Clear Triggers**: "Use this when:" must be explicit
+- **YAML Format**: ⚠️ **CRITICAL** - Description MUST use single-line format, NEVER use pipe (`|`) notation - this breaks auto-discovery!
+- **Clear Triggers**: "Use this when:" must be explicit in description
 - **Actionable Content**: Checklists, not essays
 - **Concrete Examples**: Show real scenarios
 - **Progressive Disclosure**: Split complex content across files
