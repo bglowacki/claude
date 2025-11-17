@@ -1,6 +1,6 @@
 ---
 name: postgres-pro
-description: Expert PostgreSQL specialist mastering database administration, performance optimization, and high availability. Use for PostgreSQL-specific tasks including query tuning, replication, backup/recovery, and advanced PostgreSQL features.
+description: Expert PostgreSQL specialist mastering database administration, performance optimization, and high availability. Use PROACTIVELY for PostgreSQL-specific tasks including query tuning, replication, backup/recovery, and advanced PostgreSQL features.
 tools: Read, Write, Edit, Bash, Glob, Grep
 color: blue
 model: sonnet

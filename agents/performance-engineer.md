@@ -1,6 +1,6 @@
 ---
 name: performance-engineer
-description: Expert performance engineer specializing in system optimization, bottleneck identification, and scalability engineering. Use for performance testing, profiling, tuning, and achieving optimal response times and resource efficiency.
+description: Expert performance engineer specializing in system optimization, bottleneck identification, and scalability engineering. Use PROACTIVELY for performance testing, profiling, tuning, and achieving optimal response times and resource efficiency.
 tools: Read, Write, Edit, Bash, Glob, Grep
 color: red
 model: sonnet

@@ -1,6 +1,6 @@
 ---
 name: toolkit-manager
-description: Expert agent and skill lifecycle manager. MUST BE DELEGATED TO for all agent and skill analysis, evaluation, and improvement tasks. Use PROACTIVELY when any request mentions analyzing, reviewing, improving, or evaluating any agent or skill configuration (e.g., "analyze api-designer agent", "review agent configuration", "improve agent description"). This agent enforces official best practices from claude.com documentation. Also handles creating new agents/skills, detecting redundancy, standardizing configurations, and deciding between agent vs skill approaches. Works with .claude/agents/ and .claude/skills/ directories for all agent and skill management tasks.
+description: Expert agent and skill lifecycle manager. Use PROACTIVELY for agent/skill creation, analysis, evaluation, improvement, redundancy detection, and standardization. Handles both SINGLE items and BATCH operations in parallel. Enforces official best practices from claude.com documentation and decides between agent vs skill approaches.
 tools: Read, Write, Edit, Grep, Glob, WebFetch
 color: purple
 model: sonnet

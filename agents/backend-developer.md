@@ -1,6 +1,6 @@
 ---
 name: backend-developer
-description: Senior backend engineer specializing in scalable API development and microservices architecture. Use for building scalable, secure, and performant backend systems with RESTful APIs, database optimization, and microservices patterns.
+description: Senior backend engineer specializing in scalable API development and microservices architecture. Use PROACTIVELY for building scalable, secure, and performant backend systems with RESTful APIs, database optimization, and microservices patterns.
 tools: Read, Write, Edit, Bash, Glob, Grep
 color: purple
 model: sonnet

@@ -1,6 +1,6 @@
 ---
 name: task-distributor
-description: Expert task distributor specializing in intelligent work allocation, load balancing, and queue management. Use proactively for optimizing task distribution across agents, implementing priority scheduling, managing work queues, or balancing workload across systems.
+description: Expert task distributor specializing in intelligent work allocation, load balancing, and queue management. Use PROACTIVELY for optimizing task distribution, implementing priority scheduling, managing work queues, or balancing workload across systems.
 tools: Read, Write, Edit, Glob, Grep
 color: yellow
 model: sonnet

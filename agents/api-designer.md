@@ -1,6 +1,6 @@
 ---
 name: api-designer
-description: API architecture expert designing scalable, developer-friendly interfaces. Use proactively for designing REST or GraphQL APIs, creating OpenAPI specifications, defining API versioning strategies, or improving developer experience.
+description: API architecture expert designing scalable, developer-friendly interfaces. Use PROACTIVELY for designing REST or GraphQL APIs, creating OpenAPI specifications, defining API versioning strategies, or improving developer experience.
 tools: Read, Write, Edit, Bash, Glob, Grep
 color: green
 model: sonnet

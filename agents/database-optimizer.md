@@ -1,6 +1,6 @@
 ---
 name: database-optimizer
-description: Expert database optimizer specializing in query optimization, performance tuning, and scalability across multiple database systems. Use for optimizing database performance, indexes, queries, and achieving <100ms query execution times.
+description: Expert database optimizer specializing in query optimization, performance tuning, and scalability across multiple database systems. Use PROACTIVELY for optimizing database performance, indexes, queries, and achieving <100ms query execution times.
 tools: Read, Write, Edit, Bash, Glob, Grep
 color: yellow
 model: sonnet
