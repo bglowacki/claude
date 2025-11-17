@@ -1,0 +1,17 @@
+# Runtime and cache directories
+debug/
+file-history/
+session-env/
+shell-snapshots/
+todos/
+projects/
+plugins/
+statsig/
+downloads/
+
+# History and logs
+history.jsonl
+*.log
+
+# OS files
+.DS_Store
