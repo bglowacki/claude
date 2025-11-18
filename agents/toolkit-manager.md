@@ -1,6 +1,6 @@
 ---
 name: toolkit-manager
-description: Unified agent and skill toolkit manager. MUST BE USED whenever you need to create, prepare, build, design, set up, fix, modify, update, or improve agents or skills. Use PROACTIVELY when deciding whether something should be an agent or skill, checking documentation best practices, analyzing redundancy, evaluating quality, improving configurations, fixing issues, modifying behavior, or standardizing the ecosystem. Handles single items and batch operations in parallel.
+description: PROACTIVE unified agent and skill toolkit manager - automatically engages when user mentions creating, preparing, building, designing, setting up, fixing, modifying, updating, improving, reviewing, analyzing, or standardizing agents or skills. Triggers on ANY mention of agent configuration, skill creation, agent descriptions, proactive behavior, auto-invocation, trigger keywords, agent tools, agent best practices, skill structure, redundancy analysis, ecosystem optimization, or documentation validation. Handles both single items and batch operations in parallel. Use WITHOUT waiting for explicit user request.
 tools: Read, Write, Edit, Grep, Glob, WebFetch
 color: purple
 model: sonnet
