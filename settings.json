@@ -1,32 +1,44 @@
 {
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/discover-agents.sh",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "npx -y ccstatusline@latest",
     "padding": 0
   },
+  "extraKnownMarketplaces": {
+    "claude-code-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "severity1/claude-code-marketplace"
+      }
+    },
+    "claude-code-plugins-plus": {
+      "source": {
+        "source": "github",
+        "repo": "jeremylongshore/claude-code-plugins-plus"
+      }
+    },
+    "every-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "EveryInc/every-marketplace"
+      }
+    }
+  },
   "enabledPlugins": {
     "prompt-improver@claude-code-marketplace": true
-  },
-  "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "*",
-        "hooks": [{
-          "type": "command",
-          "command": "echo 'Session Context: For complex development tasks requiring 3+ specialized agents with sequential dependencies (e.g., implement + test + document + deploy), proactively consider using the workflow-orchestrator agent to coordinate multi-phase workflows.'",
-          "timeout": 60
-        }]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "matcher": "*",
-        "hooks": [{
-          "type": "command",
-          "command": "echo '\nPARALLELIZATION ANALYSIS REQUIRED:\n\nBefore executing, analyze this request for parallel agent opportunities:\n\n1. Identify all specialized domains involved\n2. Determine which work can proceed independently\n3. If 2+ agents can work in parallel, USE Task tool with parallel invocations\n4. Single-agent execution only if task requires single specialization\n\nHIGH-VALUE PARALLEL PATTERNS:\n• Multi-domain review → Use parallel specialized reviewers\n• Implementation + testing → Use implementation agent || test-automator\n• Testing + documentation → Use test-automator || documentation-engineer  \n• Security + performance analysis → Use security-auditor || performance-engineer\n• Database + API optimization → Use database-optimizer || api-designer\n• Multi-component updates → Use domain-specific agents in parallel\n\nSINGLE-AGENT PATTERNS:\n• Specific bug fixes → debugger only\n• Code explanation → single analysis\n• Focused reviews → single reviewer\n\nAgent roster: code-reviewer, test-automator, qa-expert, performance-engineer, security-auditor, documentation-engineer, database-optimizer, kubernetes-specialist, backend-developer, django-developer, python-pro, api-designer, microservices-architect, postgres-pro, eventsourcing-expert, debugger, research-analyst, architect-reviewer, penetration-tester.\n'",
-          "timeout": 60
-        }]
-      }
-    ]
   }
 }

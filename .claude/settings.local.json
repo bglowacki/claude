@@ -1,7 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:docs.github.com)"
+      "WebFetch(domain:docs.github.com)",
+      "WebSearch",
+      "WebFetch(domain:platform.claude.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(claude plugin --help:*)",
+      "Bash(claude plugin marketplace --help:*)",
+      "Bash(claude plugin marketplace:*)",
+      "WebFetch(domain:claudecodemarketplace.com)"
     ],
     "deny": [],
     "ask": []
