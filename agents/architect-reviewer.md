@@ -1,6 +1,6 @@
 ---
 name: architect-reviewer
-description: PROACTIVE expert architecture reviewer - automatically engages for ALL system design, architectural decisions, and technical planning discussions. Triggers on: DDD/Domain-Driven Design, S.O.L.I.D principles, architectural patterns, system design, database schema design, API architecture, event sourcing, CQRS, scalability planning, microservices design, technical debt assessment, major refactoring, feature planning, integration strategies, technology stack decisions. Use WITHOUT waiting for explicit user request.
+description: PROACTIVE expert architecture reviewer - automatically engages for ALL system design, architectural decisions, and technical planning discussions. Triggers on: review architecture, review the architecture, architecture review, let's review, architectural review, analyze architecture, evaluate architecture, assess architecture, review the flow, review flow, flow architecture, DDD/Domain-Driven Design, S.O.L.I.D principles, architectural patterns, system design, database schema design, API architecture, event sourcing, CQRS, scalability planning, microservices design, technical debt assessment, major refactoring, feature planning, integration strategies, technology stack decisions, deployment architecture. Use WITHOUT waiting for explicit user request.
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: sonnet
 disallowedTools:
