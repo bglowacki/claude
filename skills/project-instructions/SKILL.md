@@ -1,6 +1,6 @@
 ---
 name: Project Instructions Generator
-description: Guides users in creating comprehensive project instructions (instructions.md, CLAUDE.md, etc.) that include agent discovery, parallel invocation patterns, dynamic agent selection, and orchestrated workflow recommendations. Use this when user wants to create project instructions for a new project, enhance existing instructions with best practices, document available agents and skills, add parallel execution patterns, or standardize project documentation across multiple projects.
+description: Guides users in creating comprehensive META-DOCUMENTATION for Claude Code usage (instructions.md, CLAUDE.md, etc.) - NOT application documentation. Focuses on agent discovery, parallel invocation patterns, dynamic agent selection, and orchestrated workflow recommendations. Complements @claude-specialist (validates configurations) and @documentation-engineer (creates application docs). Use this when user wants to create project instructions for a new project, enhance existing instructions with best practices, document available agents and skills, add parallel execution patterns, or standardize project documentation across multiple projects.
 allowed-tools: [Read, Write, Edit, Grep, Glob]
 ---
 
@@ -25,6 +25,73 @@ This skill helps you create comprehensive project instruction files (instruction
 - **toolkit-manager**: Creates agents/skills; this skill documents how to use them efficiently
 - **workflow-orchestrator**: Plans complex workflows; this skill documents general patterns
 - **Global instructions.md**: System-level instructions; this creates project-specific guidance
+
+## How to Use with Agents
+
+This skill focuses on META-DOCUMENTATION (Claude Code usage patterns), NOT application documentation. Understanding the distinction helps you work efficiently with complementary agents:
+
+### Workflow Pattern: Create Instructions → Validate Configuration
+
+**Step 1**: Use this skill to create/enhance project instructions
+- Focus: Agent discovery, parallelization patterns, workflow orchestration
+- Output: `.claude/instructions.md` with Claude Code usage guidance
+
+**Step 2**: Use @claude-specialist to validate the agent ecosystem
+- Validates agent configurations for best practices
+- Checks for redundancy and proper YAML formatting
+- Ensures agent descriptions enable proactive invocation
+- Reviews hook configurations and integration
+
+**Example workflow**:
+```
+User: "Create comprehensive project instructions"
+→ Use project-instructions skill to generate instructions.md
+→ Delegate to @claude-specialist to validate all agent configs
+→ Result: Complete, validated Claude Code setup
+```
+
+### Workflow Pattern: Application Docs vs Claude Code Docs
+
+**When you need APPLICATION documentation** (API docs, architecture guides, user manuals):
+- Delegate to @documentation-engineer
+- Creates end-user and developer documentation
+- Focuses on application functionality, not Claude Code usage
+
+**When you need CLAUDE CODE documentation** (this skill):
+- Use project-instructions skill
+- Documents agent discovery, parallelization, orchestration
+- Focuses on how to use Claude Code effectively in this project
+
+**Example workflow**:
+```
+User: "Document the project"
+→ Clarify: Application docs or Claude Code usage docs?
+→ Application docs: Delegate to @documentation-engineer
+→ Claude Code usage: Use project-instructions skill
+→ Both needed: Create project instructions first, then delegate app docs to @documentation-engineer
+```
+
+### Collaboration Use Cases
+
+**Use Case 1: New Project Setup**
+1. Use project-instructions skill → Create `.claude/instructions.md`
+2. Delegate to @claude-specialist → Validate agent ecosystem
+3. Delegate to @documentation-engineer → Create application README
+
+**Use Case 2: Enhancing Existing Project**
+1. Use project-instructions skill → Add parallelization patterns to existing instructions
+2. Delegate to @claude-specialist → Audit agents for redundancy
+3. No need for @documentation-engineer (application docs unchanged)
+
+**Use Case 3: Team Standardization**
+1. Use project-instructions skill → Create template for all projects
+2. Delegate to @claude-specialist → Review global agent configurations
+3. Delegate to @documentation-engineer → Create team documentation standards (separate concern)
+
+**Use Case 4: Agent Discovery and Documentation**
+1. Use project-instructions skill → Document available agents in instructions.md
+2. Delegate to @claude-specialist → Validate agent configurations
+3. Result: Instructions show WHAT agents exist, @claude-specialist ensures they're configured correctly
 
 ## Prerequisites
 
@@ -915,11 +982,10 @@ Outcome: [expected result]
 ## Integration with Other Tools
 
 ### Complementary Skills
-- **meta-skill**: For creating new skills that can be documented in project instructions
 - **event-sourcing-patterns**: Example of project-specific skill that can be referenced in instructions
 
 ### Complementary Agents
-- **toolkit-manager**: Creates agents/skills; this skill documents how to discover and use them efficiently
+- **toolkit-manager**: Creates agents/skills/hooks; this skill documents how to discover and use them efficiently
 - **workflow-orchestrator**: Orchestrates complex workflows; this skill teaches when to use it vs parallel invocations
 - **All global agents**: Can be discovered and documented in project instructions
 - **All local agents**: Should be inventoried and explained in project instructions

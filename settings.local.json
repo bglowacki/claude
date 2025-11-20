@@ -1,0 +1,49 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:docs.github.com)",
+      "WebFetch(domain:code.claude.com)",
+      "WebFetch(domain:docs.aws.amazon.com)",
+      "WebFetch(domain:docs.python.org)",
+      "WebFetch(domain:kubernetes.io)",
+      "WebFetch(domain:docs.djangoproject.com)",
+      "WebSearch",
+      "WebFetch(domain:platform.claude.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(claude plugin --help:*)",
+      "Bash(claude plugin marketplace --help:*)",
+      "Bash(claude plugin marketplace:*)",
+      "WebFetch(domain:claudecodemarketplace.com)",
+      "Bash(claude plugin install:*)",
+      "Bash(for:*)",
+      "Bash(do basename \"$file\")",
+      "Bash(done)",
+      "WebFetch(domain:www.anthropic.com)",
+      "WebFetch(domain:www.dolthub.com)",
+      "WebFetch(domain:danielmiessler.com)",
+      "WebFetch(domain:simonwillison.net)",
+      "Bash(xargs:*)",
+      "WebFetch(domain:leehanchung.github.io)",
+      "WebFetch(domain:scottspence.com)",
+      "Read(/Users/bartoszglowacki/**)"
+    ],
+    "deny": [
+      "Read(./.env*)",
+      "Read(./secrets/**)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Write(/etc/**)",
+      "Write(~/.ssh/**)",
+      "Write(~/.aws/**)",
+      "Bash(rm -rf:*)",
+      "Bash(sudo rm:*)",
+      "Bash(chmod 777:*)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(rm:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)"
+    ]
+  }
+}

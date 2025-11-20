@@ -226,7 +226,7 @@ See [agent-templates.md](toolkit-manager/agent-templates.md) for ready-to-use te
    - Global: `~/.claude/skills/[skill-name]/SKILL.md`
    - Project: `.claude/skills/[skill-name]/SKILL.md` or `.claude/skills/[skill-name].md`
 
-   **Note**: Directory structure (`[skill-name]/SKILL.md`) is preferred for both global and project skills as it allows for supporting files. Simple `.md` files are acceptable for project skills if they don't require supporting documentation.
+   **Note**: Directory structure (`[skill-name]/SKILL.md`) is preferred for both global and project skills as it allows for supporting files. Simple `.md` files are acceptable for project skills if they don't require supporting documentation. For complex skills, use progressive disclosure patterns to keep content manageable - see [progressive-disclosure.md](toolkit-manager/progressive-disclosure.md).
 
 5. **Validate**:
    - YAML frontmatter matches official structure
@@ -234,8 +234,9 @@ See [agent-templates.md](toolkit-manager/agent-templates.md) for ready-to-use te
    - Frontmatter includes "Use this when:" in description
    - Instructions are clear and actionable
    - Examples demonstrate real scenarios
+   - Tool restrictions are appropriate - see [tool-restrictions.md](toolkit-manager/tool-restrictions.md)
 
-For detailed skill creation, see the meta-skill at `~/.claude/skills/meta-skill/SKILL.md`
+For detailed skill templates and patterns, see [skill-templates.md](toolkit-manager/skill-templates.md)
 
 #### Creating a Hook
 
@@ -435,7 +436,7 @@ Compare within and across categories:
 **Step 3: Calculate Overlap**
 Use overlap framework from:
 - Agents: [agent-analysis.md](toolkit-manager/agent-analysis.md)
-- Skills: `~/.claude/skills/meta-skill/skill-analysis.md`
+- Skills: [skill-analysis.md](toolkit-manager/skill-analysis.md)
 
 Overlap formula: `(Purpose × 0.4) + (Trigger × 0.3) + (Content × 0.3)`
 
@@ -705,10 +706,14 @@ Updated [M] skills:
 
 For additional frameworks and templates:
 - [agent-analysis.md](toolkit-manager/agent-analysis.md) - Agent redundancy framework
-- [decision-framework.md](toolkit-manager/decision-framework.md) - Agent vs skill criteria
+- [skill-analysis.md](toolkit-manager/skill-analysis.md) - Skill redundancy framework
+- [decision-framework.md](toolkit-manager/decision-framework.md) - Agent vs skill vs hook criteria
 - [agent-templates.md](toolkit-manager/agent-templates.md) - Ready-to-use agent templates
-- `~/.claude/skills/meta-skill/skill-analysis.md` - Skill redundancy framework
-- `~/.claude/skills/meta-skill/SKILL.md` - Detailed skill creation guide
+- [skill-templates.md](toolkit-manager/skill-templates.md) - Ready-to-use skill templates
+- [progressive-disclosure.md](toolkit-manager/progressive-disclosure.md) - Content organization patterns
+- [tool-restrictions.md](toolkit-manager/tool-restrictions.md) - Tool restriction best practices
+- [tool-selection-guide.md](toolkit-manager/tool-selection-guide.md) - Tool selection for agents
+- [delegation-patterns.md](toolkit-manager/delegation-patterns.md) - Agent delegation patterns
 
 ## Quick Reference
 

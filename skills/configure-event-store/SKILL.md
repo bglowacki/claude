@@ -1,21 +1,40 @@
 ---
 name: Configure Event Store
-description: |
-  Configures PostgreSQL event store for Python eventsourcing library with proper persistence and snapshot strategies.
-  Use this when: setting up event sourcing infrastructure, configuring persistence, or optimizing event store performance.
-  Triggers: "configure event store", "setup persistence", "event store config", "PostgreSQL event store".
+description: Production PostgreSQL event store configuration for Python eventsourcing library. Focuses on DevOps concerns - performance optimization (indexes, connection pooling), monitoring, security, multi-tenant patterns, and production deployment. Use this when configuring production event store infrastructure, optimizing performance, setting up monitoring, or deploying to production environments. Works with eventsourcing-expert agent (handles application-level configuration). Triggers - "production event store", "event store performance", "optimize event store", "deploy event store", "event store monitoring", "multi-tenant event store".
 allowed-tools: [Read, Write, Edit, Grep, Glob, Bash, mcp__context7__resolve-library-id, mcp__context7__get-library-docs]
 ---
 
 # Instructions
 
+> **Note:** This skill focuses on **production/DevOps configuration** of the event store infrastructure. For application-level configuration (aggregate design, domain events, application class structure), use the **eventsourcing-expert agent** instead.
+
+## Development vs Production Configuration
+
+**Use eventsourcing-expert agent when:**
+- Designing aggregates and domain events
+- Implementing application class logic
+- Creating event-sourced domain models
+- Understanding eventsourcing library concepts
+- Writing application-level code
+
+**Use this skill when:**
+- Deploying event store to production
+- Configuring performance optimization (indexes, pooling)
+- Setting up monitoring and maintenance
+- Implementing security best practices
+- Configuring multi-tenant patterns
+- Troubleshooting production issues
+
 ## Prerequisites
 - PostgreSQL database installed and accessible
 - Python eventsourcing library installed
-- Django settings configured
+- Django settings configured (or similar framework)
 - Understanding of event sourcing persistence
+- Production environment access (for deployment steps)
 
-## Workflow
+## Production-First Workflow
+
+This skill emphasizes production deployment and operational concerns. For basic application setup, consult eventsourcing-expert agent first, then use this skill for production hardening.
 
 ### Step 1: Fetch Eventsourcing Documentation
 
@@ -313,6 +332,8 @@ def test_snapshot_creation(application):
 
 ## Event Store Configuration Patterns
 
+> **Note:** Pattern 1 (Basic) and Pattern 4 (Testing) are suitable for development. For production deployments, focus on Pattern 2 (Production) and Pattern 3 (Multi-Tenant).
+
 ### Pattern 1: Basic PostgreSQL Configuration
 
 Minimal setup for development:
@@ -355,7 +376,9 @@ class ProductionApplication(Application):
         )
 ```
 
-### Pattern 3: Multi-Tenant Configuration
+### Pattern 3: Multi-Tenant Configuration (Production)
+
+> **Unique Value:** Multi-tenant event store patterns for SaaS applications. Critical for production multi-tenant deployments.
 
 Separate event stores per tenant:
 
@@ -389,7 +412,9 @@ class TestApplication(Application):
         )
 ```
 
-## Best Practices
+## Best Practices (Production & Security)
+
+> **Unique Value:** Production deployment best practices and security considerations. Critical for production-ready event store deployments.
 
 ### DO:
 ✅ **Use environment variables** - Never hardcode credentials
@@ -455,7 +480,9 @@ env={
 }
 ```
 
-## Performance Optimization
+## Performance Optimization (Production Critical)
+
+> **Unique Value:** This section provides production-specific performance tuning not covered by application-level configuration. These optimizations are essential for production deployments handling real-world load.
 
 ### Database Indexes
 
@@ -501,7 +528,9 @@ Adjust snapshot frequency based on aggregate characteristics:
 "MAX_SNAPSHOTS": "10"  # Keep more snapshots
 ```
 
-## Monitoring and Maintenance
+## Monitoring and Maintenance (DevOps Focus)
+
+> **Unique Value:** Production monitoring and operational maintenance procedures. These are DevOps concerns not addressed in application development.
 
 ### Event Store Metrics
 
@@ -615,25 +644,41 @@ def test_with_event_store(application):
 
 # Quick Reference
 
+## Production Deployment Checklist
+
+> **Unique Value:** Comprehensive production readiness checklist covering performance, security, and operational concerns.
+
 **Configuration Checklist:**
 - [ ] PostgreSQL connection configured
 - [ ] Environment variables set
 - [ ] Snapshots enabled (if needed)
 - [ ] Connection pooling configured
-- [ ] Tables created via migration
+- [ ] Tables created via migration (not auto-created)
 - [ ] Tests verify storage/retrieval
 - [ ] Monitoring in place
 
-**Performance Checklist:**
-- [ ] Appropriate snapshot interval
-- [ ] Connection pool sized correctly
-- [ ] Database indexes created
-- [ ] Backup strategy defined
-- [ ] Monitoring configured
+**Performance Checklist (Production Critical):**
+- [ ] Appropriate snapshot interval configured
+- [ ] Connection pool sized for expected load
+- [ ] Database indexes created (originator_id, timestamp, notification_id)
+- [ ] Connection pre-ping enabled
+- [ ] Pool timeout and recycle configured
+- [ ] Backup strategy defined and tested
+- [ ] Monitoring configured for key metrics
+- [ ] Query performance baselines established
 
-**Security Checklist:**
-- [ ] Credentials in environment variables
-- [ ] No hardcoded passwords
-- [ ] SSL/TLS for database connection
-- [ ] Principle of least privilege
-- [ ] Regular backups tested
+**Security Checklist (Production Critical):**
+- [ ] Credentials stored in environment variables only
+- [ ] No hardcoded passwords in code or config
+- [ ] SSL/TLS enabled for database connections
+- [ ] Database user follows principle of least privilege
+- [ ] Regular backups tested with restore procedures
+- [ ] Event store access audited and logged
+- [ ] Credentials rotated on schedule
+
+**Multi-Tenant Checklist (If Applicable):**
+- [ ] Tenant isolation strategy defined
+- [ ] Per-tenant database or schema design chosen
+- [ ] Tenant ID validation implemented
+- [ ] Cross-tenant access prevented
+- [ ] Tenant-specific monitoring configured
