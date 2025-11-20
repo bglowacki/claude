@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Verbosity control via environment variable
+QUIET_MODE="${CLAUDE_HOOK_QUIET:-false}"
+
 # Discover all available agents (global and project-local)
 discover_agents() {
     local agents=()
@@ -54,8 +57,10 @@ discover_skills() {
 AGENT_ROSTER=$(discover_agents)
 SKILL_ROSTER=$(discover_skills)
 
-# Output parallelization prompt with dynamic agent roster
-cat <<'EOF'
+# Output based on verbosity setting
+if [ "$QUIET_MODE" = "false" ]; then
+    # Full output with parallelization guidance
+    cat <<'EOF'
 
 🔀 PARALLELIZATION ANALYSIS REQUIRED:
 
@@ -84,7 +89,11 @@ SINGLE-AGENT PATTERNS:
 • Focused reviews → single reviewer
 
 EOF
-
-# Output discovered agent and skill rosters
-echo "Available agents: $AGENT_ROSTER"
-echo "Available skills: $SKILL_ROSTER"
+    # Output discovered agent and skill rosters
+    echo "Available agents: $AGENT_ROSTER"
+    echo "Available skills: $SKILL_ROSTER"
+else
+    # Quiet mode - minimal output
+    echo "Available agents: $AGENT_ROSTER"
+    echo "Available skills: $SKILL_ROSTER"
+fi

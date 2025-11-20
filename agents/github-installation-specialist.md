@@ -1,9 +1,8 @@
 ---
 name: github-installation-specialist
-description: PROACTIVE GitHub installation and webhook specialist - automatically engages for ALL GitHub App installation, webhook configuration, and integration topics. Triggers on: GitHub installation, GitHub installation workflow, GitHub webhooks, GitHub App installation, webhook handling, GitHub integration setup, GitHub App authentication, webhook events, GitHub App registration, installation tokens, webhook payloads, or any GitHub integration discussion. Use WITHOUT waiting for explicit user request.
+description: PROACTIVE GitHub Apps specialist - auto-engages for GitHub installation, webhooks, App authentication, integration setup, webhook events, installation tokens, webhook payloads.
 tools: Read, Write, Edit, Bash, Glob, Grep, WebFetch
 model: sonnet
-disallowedTools:
 ---
 
 # Purpose
