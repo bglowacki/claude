@@ -18,6 +18,13 @@
 - Challenge complexity - simpler is better
 - Align with existing patterns in codebase
 
+### Code Style Preferences
+- **No docstrings**: Don't add docstrings to functions unless explicitly requested
+- **Minimal changes**: Keep code changes focused on functional requirements only
+- **Self-documenting code**: Prefer clear naming over documentation
+- **Comments only when needed**: Add comments only for non-obvious logic or important caveats
+- **No Claude attribution**: Don't add Claude Code attribution to git commits (no "Generated with Claude Code" or "Co-Authored-By: Claude")
+
 ---
 
 ## When to Use What
@@ -87,6 +94,19 @@
 - Multi-domain review → Parallel specialized reviewers
 - Implementation + testing → Developer agent || test-automator
 - Analysis across components → Parallel domain specialists
+
+**MANDATORY PARALLELIZATION CHECKLIST:**
+
+Before executing ANY multi-part request, you MUST explicitly state:
+
+```
+PARALLELIZATION DECISION:
+- Can tasks run independently? [YES/NO]
+- If YES: Executing [N] agents in PARALLEL: [agent1, agent2, ...]
+- If NO: Sequential because: [specific dependency reason]
+```
+
+This is **NOT optional** - it forces deliberate thinking about execution strategy.
 
 ### Sequential Workflows
 **When**: Tasks have dependencies - one needs output from another
