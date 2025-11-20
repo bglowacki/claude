@@ -1,6 +1,6 @@
 ---
 name: toolkit-manager
-description: PROACTIVE unified agent, skill, and hook toolkit manager - automatically engages when user mentions creating, preparing, building, designing, setting up, fixing, modifying, updating, improving, reviewing, analyzing, or standardizing agents, skills, or hooks. Triggers on ANY mention of agent configuration, skill creation, hook creation, hook configuration, event handling, agent descriptions, proactive behavior, auto-invocation, trigger keywords, agent tools, agent best practices, skill structure, hook events, hook matchers, redundancy analysis, ecosystem optimization, or documentation validation. Handles both single items and batch operations in parallel. Use WITHOUT waiting for explicit user request.
+description: PROACTIVE toolkit manager - auto-engages for agent/skill/hook creation, analysis, configuration, optimization. Handles creation, redundancy analysis, standardization, batch operations.
 tools: Read, Write, Edit, Grep, Glob, WebFetch, Bash
 color: purple
 model: sonnet
