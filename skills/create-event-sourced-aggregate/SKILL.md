@@ -1,24 +1,58 @@
 ---
-name: Create Event-Sourced Aggregate
-description: |
-  Creates event-sourced aggregates using Python eventsourcing library with DDD patterns.
-  Use this when: implementing new aggregates, creating domain entities with event sourcing, or building write models.
-  Triggers: "create aggregate", "new aggregate", "event-sourced entity", "domain aggregate".
-allowed-tools: [Read, Write, Edit, Grep, Glob, Bash, mcp__context7__resolve-library-id, mcp__context7__get-library-docs]
+name: Event-Sourced Aggregate Patterns
+description: Pattern catalog and validation guide for event-sourced aggregates using Python eventsourcing library with DDD patterns. Contains 4 aggregate patterns (simple, state transitions, collections, business rules) and anti-patterns reference. Use this when validating aggregate designs, reviewing event-sourcing implementations, or learning aggregate patterns. For implementation, use with @eventsourcing-expert agent.
+allowed-tools: [Read, Grep, Glob, mcp__context7__resolve-library-id, mcp__context7__get-library-docs]
 ---
+
+# Event-Sourced Aggregate Patterns & Validation
+
+## Skill Purpose
+
+This skill provides:
+- **Pattern Catalog**: 4 proven aggregate design patterns with working examples
+- **Anti-Patterns Reference**: Common pitfalls and how to avoid them
+- **Validation Checklist**: Review criteria for aggregate implementations
+- **Best Practices**: DDD principles and event sourcing guidelines
+
+## Working with the eventsourcing-expert Agent
+
+**This skill provides patterns and validation; use @eventsourcing-expert agent for implementation.**
+
+**Typical Workflow:**
+1. Review patterns in this skill to understand options
+2. Invoke @eventsourcing-expert agent to create aggregate implementation
+3. Use this skill's validation checklist to review the result
+4. Use anti-patterns section to identify potential issues
+
+**Division of Responsibilities:**
+- **This Skill**: Reference guide, pattern examples, validation criteria (read-only)
+- **eventsourcing-expert Agent**: Implementation, code generation, file creation (read-write)
 
 # Instructions
 
-## Prerequisites
-- Python eventsourcing library installed
-- Understanding of Domain-Driven Design (DDD) concepts
-- Knowledge of aggregate boundaries and invariants
-- PostgreSQL database configured for event store
+## Prerequisites for Using This Skill
+- Basic understanding of Domain-Driven Design (DDD) concepts
+- Familiarity with event sourcing principles
+- Access to Python eventsourcing library documentation (can be fetched via MCP tools)
 
-## Workflow
+## How to Use This Skill
 
-### Step 1: Fetch Eventsourcing Documentation
-Always start by retrieving the latest library documentation:
+### As a Pattern Reference
+Browse the 4 aggregate patterns (below) to find the design that matches your use case:
+1. **Simple Aggregate** - Single entity with minimal state
+2. **State Transitions** - Lifecycle with explicit states
+3. **Collections** - Managing child entities
+4. **Business Rules** - Complex invariant protection
+
+### As a Validation Tool
+Use the validation checklist and anti-patterns sections to review aggregate implementations:
+- Check against best practices
+- Identify common pitfalls
+- Verify event sourcing patterns
+- Ensure DDD principles are followed
+
+### Working with Official Documentation
+Retrieve the latest eventsourcing library documentation:
 
 ```python
 # Resolve library ID
@@ -32,12 +66,14 @@ mcp__context7__get-library-docs(
 )
 ```
 
-This ensures all patterns follow official eventsourcing library best practices.
+This ensures validation against current eventsourcing library best practices.
 
-### Step 2: Define Aggregate Boundaries
-Identify the aggregate's responsibility:
+## Aggregate Design Considerations
 
-**Questions to Answer:**
+### Defining Aggregate Boundaries
+Key questions when defining aggregate boundaries:
+
+**Responsibility Questions:**
 - What invariants must the aggregate protect?
 - What domain concepts does it encapsulate?
 - What commands will it handle?
@@ -50,36 +86,24 @@ Identify the aggregate's responsibility:
 - Aggregates protect business rules
 - External references by ID only (no direct object refs)
 
-### Step 3: Design Domain Events
+### Domain Event Design
 Events represent state changes in past tense:
 
-**Event Naming:**
+**Event Naming Conventions:**
 - Use past tense: `Created`, `Updated`, `Deleted`, `Activated`
 - Be domain-specific: `GitHubInstallationCreated`, `WidgetRegistryEndpointActivated`
 - Capture meaningful business events, not CRUD operations
 
-**Event Structure:**
-```python
-from eventsourcing.domain import Aggregate
-
-class MyAggregate(Aggregate):
-    class EventName(Aggregate.Event):
-        field1: str
-        field2: int
-        field3: Optional[UUID]
-```
-
-**Event Best Practices:**
+**Event Structure Guidelines:**
 - Immutable (use frozen dataclasses)
 - Past-tense names
 - Include all data needed for projections
 - Type hints for all fields
 - No business logic in events
 
-### Step 4: Implement Aggregate
-Create the aggregate class following the template:
+### Aggregate Implementation Structure
+Standard project structure for aggregates:
 
-**File Location:**
 ```
 apps/registry/<bounded_context>/<aggregate_name>/
 ├── aggregate.py              # Aggregate implementation
@@ -88,161 +112,35 @@ apps/registry/<bounded_context>/<aggregate_name>/
 │   └── test_<aggregate>_aggregate.py
 ```
 
-**Aggregate Template:**
-```python
-from uuid import UUID
-from typing import Optional
-from eventsourcing.domain import Aggregate
-
-class MyAggregate(Aggregate):
-    def __init__(self, field1: str, field2: int, **kwargs):
-        super().__init__(**kwargs)
-        self.field1 = field1
-        self.field2 = field2
-
-    class Created(Aggregate.Created):
-        field1: str
-        field2: int
-
-    @classmethod
-    def create(cls, field1: str, field2: int) -> "MyAggregate":
-        return cls._create(
-            cls.Created,
-            id=cls.create_id(),
-            field1=field1,
-            field2=field2
-        )
-
-    class Updated(Aggregate.Event):
-        field1: str
-
-    def update_field1(self, new_value: str) -> None:
-        if not new_value:
-            raise ValueError("Field1 cannot be empty")
-
-        self.trigger_event(
-            self.Updated,
-            field1=new_value
-        )
-
-    def _apply(self, event: Aggregate.Event) -> None:
-        super()._apply(event)
-        if isinstance(event, self.Updated):
-            self.field1 = event.field1
-```
-
-**Key Implementation Points:**
+**Key Implementation Patterns:**
 - Inherit from `Aggregate`
 - Define events as nested classes
 - Use `@classmethod create()` for creation
 - Use `trigger_event()` to emit events
 - Implement `_apply()` for event handling
-- Protect invariants in command methods
+- Protect invariants in command methods before triggering events
 - Raise domain exceptions for validation errors
 
-### Step 5: Create Command Handlers
-Implement command handlers in `commands.py`:
+### Validation Requirements
+When reviewing aggregate implementations, verify:
 
-**Command Handler Template:**
-```python
-from uuid import UUID
-from apps.core.cqrs.command import CommandHandler, command_handler
-from apps.core.cqrs.commands import Command
-from .aggregate import MyAggregate
+**Structure:**
+- ✅ Inherits from `eventsourcing.domain.Aggregate`
+- ✅ Events defined as nested classes
+- ✅ All events have type hints
+- ✅ `_apply()` method handles all events
 
-class CreateMyAggregateCommand(Command):
-    field1: str
-    field2: int
+**Behavior:**
+- ✅ Validation occurs BEFORE `trigger_event()`
+- ✅ State changes only via events (no direct mutation)
+- ✅ Events use past tense naming
+- ✅ Invariants protected in command methods
 
-class CreateMyAggregateHandler(CommandHandler[CreateMyAggregateCommand]):
-    @command_handler
-    def handle(self, command: CreateMyAggregateCommand) -> UUID:
-        aggregate = MyAggregate.create(
-            field1=command.field1,
-            field2=command.field2
-        )
-        self.repository.save(aggregate)
-        return aggregate.id
-
-class UpdateMyAggregateCommand(Command):
-    aggregate_id: UUID
-    field1: str
-
-class UpdateMyAggregateHandler(CommandHandler[UpdateMyAggregateCommand]):
-    @command_handler
-    def handle(self, command: UpdateMyAggregateCommand) -> None:
-        aggregate = self.repository.get(command.aggregate_id)
-        aggregate.update_field1(command.field1)
-        self.repository.save(aggregate)
-```
-
-### Step 6: Write Tests
-Create comprehensive tests in `tests/test_<aggregate>_aggregate.py`:
-
-**Test Template:**
-```python
-import pytest
-from uuid import UUID
-from .aggregate import MyAggregate
-
-def test_create_aggregate():
-    aggregate = MyAggregate.create(
-        field1="test value",
-        field2=42
-    )
-
-    assert isinstance(aggregate.id, UUID)
-    assert aggregate.field1 == "test value"
-    assert aggregate.field2 == 42
-
-    assert len(aggregate.pending_events) == 1
-    event = aggregate.pending_events[0]
-    assert isinstance(event, MyAggregate.Created)
-    assert event.field1 == "test value"
-    assert event.field2 == 42
-
-def test_update_field1():
-    aggregate = MyAggregate.create(field1="initial", field2=10)
-    aggregate.collect_events()
-
-    aggregate.update_field1("updated")
-
-    assert aggregate.field1 == "updated"
-    assert len(aggregate.pending_events) == 1
-    assert isinstance(aggregate.pending_events[0], MyAggregate.Updated)
-
-def test_update_field1_validation():
-    aggregate = MyAggregate.create(field1="initial", field2=10)
-
-    with pytest.raises(ValueError, match="Field1 cannot be empty"):
-        aggregate.update_field1("")
-
-def test_event_sourcing_reconstruction():
-    aggregate = MyAggregate.create(field1="initial", field2=10)
-    events = aggregate.collect_events()
-
-    aggregate.update_field1("updated")
-    events.extend(aggregate.collect_events())
-
-    reconstructed = MyAggregate.mutate(None, *events)
-
-    assert reconstructed.field1 == "updated"
-    assert reconstructed.field2 == 10
-```
-
-### Step 7: Run Tests and Validation
-
-Execute tests to verify implementation:
-
-```bash
-pytest apps/registry/<bounded_context>/<aggregate_name>/tests/ -v
-```
-
-Run code quality checks:
-
-```bash
-flake8 apps/registry/<bounded_context>/<aggregate_name>/
-```
+**Testing:**
+- ✅ Tests for creation
+- ✅ Tests for updates
+- ✅ Tests for validation failures
+- ✅ Tests for event sourcing reconstruction
 
 ## Aggregate Design Patterns
 
@@ -356,26 +254,20 @@ class WidgetRegistryEndpoint(Aggregate):
         return cls._create(cls.Created, id=cls.create_id(), url=url, tenant_id=tenant_id)
 ```
 
-## Best Practices
+## Anti-Patterns and Common Pitfalls
 
-### DO:
-✅ **Keep aggregates small** - Focus on single responsibility
-✅ **Protect invariants** - Validate in command methods before triggering events
-✅ **Use past-tense event names** - `Created`, not `Create`
-✅ **Type hint everything** - Events, fields, method signatures
-✅ **Test event sourcing** - Verify reconstruction from events
-✅ **Raise domain exceptions** - Clear validation errors
-✅ **Follow project structure** - Co-locate aggregate, commands, tests
+**This section is critical for validation - review aggregate code against these pitfalls.**
 
-### DON'T:
-❌ **Don't put logic in events** - Events are data, not behavior
-❌ **Don't reference other aggregates directly** - Use IDs only
-❌ **Don't skip validation** - Protect invariants in command methods
-❌ **Don't use present tense for events** - Always past tense
-❌ **Don't forget tests** - Test creation, updates, validation, reconstruction
-❌ **Don't violate aggregate boundaries** - One aggregate per consistency boundary
+### Common Pitfalls Overview
 
-## Common Pitfalls
+| Pitfall | Symptom | Impact |
+|---------|---------|--------|
+| Forgetting `_apply()` | State not updated after events | Event sourcing reconstruction fails |
+| Validation after event | Invalid state persisted | Data corruption, inconsistent state |
+| Direct state mutation | Events not emitted | Audit trail lost, no event history |
+| Logic in events | Business rules in event classes | Cannot change rules, violates CQRS |
+| Cross-aggregate references | Direct object references | Tight coupling, boundary violations |
+| Large aggregates | Too many responsibilities | Performance issues, complex testing |
 
 ### Pitfall 1: Forgetting to Call _apply()
 ❌ **Wrong:**
@@ -426,22 +318,53 @@ def update_name(self, name: str) -> None:
     self.trigger_event(self.NameUpdated, name=name)
 ```
 
-# Examples
+## Best Practices Checklist
 
-## Example 1: Creating a Simple Aggregate
+**Use this checklist when validating aggregate implementations:**
 
-**User Request:** "Create an aggregate for tracking GitHub installations"
+### Design Best Practices
+✅ **Keep aggregates small** - Focus on single responsibility
+✅ **One consistency boundary** - One aggregate per transactional boundary
+✅ **Reference by ID only** - No direct references to other aggregates
+✅ **Protect invariants** - Enforce business rules in command methods
+✅ **Clear aggregate boundaries** - Well-defined responsibilities
 
-**Actions Taken:**
-1. Fetched eventsourcing documentation on aggregates
-2. Defined aggregate boundary: GitHubInstallation
-3. Designed events: `Created`, `Suspended`, `Deleted`
-4. Implemented aggregate in `apps/registry/github_integration/installation/aggregate.py`
-5. Created command handlers in `commands.py`
-6. Wrote tests covering creation, suspension, deletion
-7. Ran pytest - all tests passing
+### Implementation Best Practices
+✅ **Past-tense event names** - `Created`, not `Create`
+✅ **Type hint everything** - Events, fields, method signatures
+✅ **Validate before triggering** - Check invariants before `trigger_event()`
+✅ **Events are data** - No business logic in event classes
+✅ **Implement `_apply()`** - Handle all event types
 
-**Code Created:**
+### Testing Best Practices
+✅ **Test creation** - Verify initial state and events
+✅ **Test updates** - Verify state changes and events
+✅ **Test validation** - Verify invariant protection
+✅ **Test reconstruction** - Verify event sourcing with `mutate()`
+✅ **Test edge cases** - Boundary conditions and error cases
+
+### Project Structure Best Practices
+✅ **Co-locate related code** - Keep aggregate, commands, tests together
+✅ **Follow naming conventions** - Consistent file and class naming
+✅ **Document complex rules** - Comments for non-obvious invariants
+✅ **Keep events versioned** - Plan for event schema evolution
+
+# Validation Examples
+
+These examples show how to use this skill to validate aggregate implementations.
+
+## Example 1: Validating a Simple Aggregate
+
+**Scenario:** Review a GitHubInstallation aggregate implementation
+
+**Validation Process:**
+1. Check aggregate structure against Pattern 1 (Simple Aggregate)
+2. Verify events use past tense: `Created`, `Suspended` ✅
+3. Confirm validation happens before `trigger_event()` ✅
+4. Check `_apply()` handles all event types ✅
+5. Verify tests cover creation, state changes, reconstruction ✅
+
+**Sample Code Being Validated:**
 ```python
 # aggregate.py
 from uuid import UUID
@@ -484,25 +407,25 @@ class GitHubInstallation(Aggregate):
             self.is_suspended = True
 ```
 
-**Expected Outcome:**
-- Aggregate created following eventsourcing patterns
-- Events properly defined and triggered
-- State transitions handled in _apply()
-- Tests verify event sourcing reconstruction
-- All tests passing, code follows PEP 8
+**Validation Result:**
+- ✅ Follows Pattern 1 (Simple Aggregate)
+- ✅ Events use past tense naming
+- ✅ State transitions through events only
+- ✅ Validation protects invariants
+- ✅ Tests verify event sourcing behavior
 
-## Example 2: Aggregate with Validation Rules
+## Example 2: Validating Business Rules Implementation
 
-**User Request:** "Create aggregate for widget registry endpoints with URL validation"
+**Scenario:** Review a WidgetRegistryEndpoint aggregate with complex validation
 
-**Actions Taken:**
-1. Fetched documentation on aggregate patterns
-2. Defined validation rules: HTTPS only, max 10 per tenant
-3. Implemented aggregate with business rules
-4. Added validation in create() and update methods
-5. Created tests for valid and invalid scenarios
+**Validation Process:**
+1. Match against Pattern 4 (Business Rules)
+2. Check validation occurs BEFORE events (Pitfall 2) ✅
+3. Verify business rules enforced: HTTPS check, tenant limits ✅
+4. Confirm error messages are clear and actionable ✅
+5. Check tests cover both valid and invalid cases ✅
 
-**Code Created:**
+**Sample Code Being Validated:**
 ```python
 class WidgetRegistryEndpoint(Aggregate):
     MAX_PER_TENANT = 10
@@ -556,23 +479,25 @@ class WidgetRegistryEndpoint(Aggregate):
             self.url = event.url
 ```
 
-**Expected Outcome:**
-- Business rules enforced before events
-- Clear validation errors
-- Tests cover both valid and invalid inputs
-- Aggregate protects data integrity
+**Validation Result:**
+- ✅ Matches Pattern 4 (Business Rules)
+- ✅ Validation before `trigger_event()` (no Pitfall 2)
+- ✅ Clear, actionable error messages
+- ✅ Business constants documented (MAX_PER_TENANT)
+- ✅ Tests verify both success and failure paths
 
-## Example 3: Aggregate with Child Entities
+## Example 3: Validating Collection Management
 
-**User Request:** "Aggregate that manages GitHub repositories within an installation"
+**Scenario:** Review a GitHubInstallation aggregate managing repository collections
 
-**Actions Taken:**
-1. Fetched eventsourcing docs on collection handling
-2. Designed events for add/remove repositories
-3. Implemented aggregate with repository collection
-4. Created tests for collection operations
+**Validation Process:**
+1. Match against Pattern 3 (Collections)
+2. Verify collection operations use events, not direct mutation ✅
+3. Check duplicate prevention before events ✅
+4. Confirm `_apply()` maintains collection state ✅
+5. Verify tests cover add, remove, and edge cases ✅
 
-**Code Created:**
+**Sample Code Being Validated:**
 ```python
 class GitHubInstallation(Aggregate):
     def __init__(self, installation_id: int, **kwargs):
@@ -613,11 +538,44 @@ class GitHubInstallation(Aggregate):
             self.repositories.pop(event.repository_id, None)
 ```
 
-**Expected Outcome:**
-- Collection managed through events
-- Add/remove operations properly validated
-- State reconstructed correctly from events
-- Tests verify collection operations
+**Validation Result:**
+- ✅ Follows Pattern 3 (Collections)
+- ✅ No direct collection mutation (no Pitfall 3)
+- ✅ Validation prevents duplicates before events
+- ✅ `_apply()` correctly maintains collection state
+- ✅ Events include all necessary data (ID and name)
+
+## Example 4: Identifying Anti-Patterns
+
+**Scenario:** Code review finds potential issues in aggregate implementation
+
+**Issues Found:**
+1. ❌ State mutation without events (Pitfall 3)
+   ```python
+   def deactivate(self):
+       self.is_active = False  # Direct mutation!
+   ```
+   **Fix:** Use `trigger_event(self.Deactivated)`
+
+2. ❌ Validation after event (Pitfall 2)
+   ```python
+   def update_url(self, url: str):
+       self.trigger_event(self.UrlUpdated, url=url)
+       if not url.startswith("https://"):  # Too late!
+           raise ValueError("Must be HTTPS")
+   ```
+   **Fix:** Move validation before `trigger_event()`
+
+3. ❌ Missing `_apply()` implementation (Pitfall 1)
+   ```python
+   # No _apply() method found!
+   ```
+   **Fix:** Implement `_apply()` to handle events
+
+**Validation Outcome:**
+- ❌ Multiple anti-patterns detected
+- 🔧 Use @eventsourcing-expert agent to refactor
+- ✅ Re-validate after fixes applied
 
 # Supporting Documentation
 
@@ -628,12 +586,36 @@ For advanced patterns and troubleshooting:
 
 ---
 
-**Quick Reference:**
+# Skill Summary
 
-| Task | Method | Notes |
-|------|--------|-------|
-| Create aggregate | `@classmethod create()` | Use `_create()` helper |
-| Emit event | `trigger_event()` | Before validation |
-| Apply event | `_apply()` | Update state here |
-| Validate | In command method | Before `trigger_event()` |
-| Test | pytest | Cover creation, updates, validation, reconstruction |
+## What This Skill Provides
+- **4 Aggregate Patterns**: Simple, State Transitions, Collections, Business Rules
+- **Anti-Patterns Catalog**: 6 common pitfalls with fixes
+- **Validation Checklists**: Design, implementation, testing criteria
+- **DDD Guidance**: Aggregate boundaries, invariants, consistency
+
+## How to Use This Skill
+1. **Pattern Reference**: Browse patterns to understand design options
+2. **Validation Tool**: Review implementations against checklists
+3. **Anti-Pattern Detection**: Identify common mistakes in code
+4. **Agent Collaboration**: Use with @eventsourcing-expert for implementation
+
+## Quick Validation Reference
+
+| Validation Check | Look For | Anti-Pattern Risk |
+|------------------|----------|-------------------|
+| Event naming | Past tense (`Created`, `Updated`) | N/A |
+| State changes | Only via `trigger_event()` | Pitfall 3: Direct mutation |
+| Validation timing | Before `trigger_event()` | Pitfall 2: Validation after event |
+| Event handling | `_apply()` implemented | Pitfall 1: Missing `_apply()` |
+| Aggregate boundaries | Single responsibility, ID references only | Large aggregates, tight coupling |
+| Testing | Creation, updates, validation, reconstruction | Incomplete test coverage |
+
+## Pattern Selection Guide
+
+| Use Case | Pattern | Key Feature |
+|----------|---------|-------------|
+| Basic entity tracking | Pattern 1: Simple | Minimal state, straightforward operations |
+| Lifecycle management | Pattern 2: State Transitions | Explicit state enum, transition guards |
+| Parent-child relationships | Pattern 3: Collections | Collection management via events |
+| Complex validation | Pattern 4: Business Rules | Invariant protection, business constraints |

@@ -1,13 +1,37 @@
 ---
 name: Setup Event Sourcing Projection
-description: |
-  Creates CQRS projections that map events to Django read models using Python eventsourcing library.
-  Use this when: implementing read models, creating projections from events, or bridging write/read sides in CQRS.
-  Triggers: "create projection", "setup projection", "event to read model", "CQRS read side".
-allowed-tools: [Read, Write, Edit, Grep, Glob, Bash, mcp__context7__resolve-library-id, mcp__context7__get-library-docs]
+description: CQRS architecture reference for projection patterns that map events to Django read models. Provides architectural understanding, pattern guidance, and 4 projection patterns with CQRS diagrams. Use this when you need to understand CQRS projection architecture, choose projection patterns, or reference implementation patterns. For actual implementation, work with eventsourcing-expert agent who handles code creation.
+allowed-tools: [Read, Grep, Glob]
 ---
 
 # Instructions
+
+## Role and Purpose
+
+This skill serves as a CQRS architecture reference and pattern guide for event sourcing projections. It provides:
+
+- CQRS architecture diagrams showing write/read side separation
+- 4 distinct projection patterns with use cases
+- Django integration architecture and best practices
+- Projection runner configuration patterns
+
+**This skill is for architectural understanding and pattern selection. For implementation work (creating files, writing code), involve the eventsourcing-expert agent.**
+
+## When to Involve eventsourcing-expert Agent
+
+Delegate to eventsourcing-expert agent for:
+
+- Creating projection files (projection.py, read_model_interface.py, django_read_model.py)
+- Writing event handler methods and Django ORM implementations
+- Generating database migrations
+- Writing projection tests
+- Registering projections in projection runner
+- Debugging projection issues
+
+**Workflow:**
+1. Use this skill to understand CQRS architecture and choose projection pattern
+2. Invoke eventsourcing-expert agent to implement the chosen pattern
+3. Reference this skill for architectural validation and pattern verification
 
 ## Prerequisites
 - Python eventsourcing library installed
@@ -31,23 +55,21 @@ Bridge (Projections)
 
 **Key Concept**: Projections convert events (write side) into queryable Django models (read side).
 
-## Workflow
+## Workflow for Architecture Reference
 
-### Step 1: Fetch Eventsourcing Documentation
+### Step 1: Review CQRS Architecture
 
-```python
-# Resolve library ID
-mcp__context7__resolve-library-id(libraryName="eventsourcing")
+Understand how projections bridge write and read sides (see CQRS Architecture Overview below).
 
-# Fetch projection documentation
-mcp__context7__get-library-docs(
-    context7CompatibleLibraryID="/pyeventsourcing/eventsourcing",
-    topic="projections",
-    page=1
-)
-```
+### Step 2: Choose Projection Pattern
 
-### Step 2: Understand Projection Co-Location Pattern
+Select from 4 patterns based on requirements (see Projection Patterns section below):
+- Pattern 1: Simple Event-to-Model (most common)
+- Pattern 2: Denormalization (same aggregate, multiple views)
+- Pattern 3: Aggregate Filtering (conditional projection)
+- Pattern 4: Cross-Aggregate (analytics/reporting)
+
+### Step 3: Understand Projection Co-Location Pattern
 
 **Directory Structure** (co-locate with aggregate):
 ```
@@ -68,11 +90,13 @@ apps/registry/<bounded_context>/<aggregate>/
 - ✅ One aggregate can have multiple projections
 - ❌ Don't centralize projections away from aggregates
 
-### Step 3: Create Read Model Interface
+### Step 4: Understand Component Architecture
 
-Define abstract interface for testability:
+Projection implementations consist of three components:
 
-**File**: `read_model_interface.py`
+**1. Read Model Interface** - Abstract interface for testability
+
+**File**: `read_model_interface.py` (created by eventsourcing-expert agent)
 
 ```python
 from abc import ABC, abstractmethod
@@ -106,11 +130,9 @@ class MyAggregateReadModelInterface(ABC):
 - Use type hints for all parameters
 - No implementation details
 
-### Step 4: Create Projection Class
+**2. Projection Class** - Maps events to read model operations
 
-Map events to read model operations:
-
-**File**: `projection.py`
+**File**: `projection.py` (created by eventsourcing-expert agent)
 
 ```python
 from eventsourcing.projection import Projection
@@ -158,11 +180,9 @@ class MyAggregateProjection(Projection[MyAggregateReadModelInterface]):
 - Call read model interface methods (don't access Django directly)
 - Keep logic minimal - just map event data to read model
 
-### Step 5: Create Django Read Model Implementation
+**3. Django Read Model Implementation** - Implements interface using Django ORM
 
-Implement interface using Django ORM:
-
-**File**: `django_read_model.py`
+**File**: `django_read_model.py` (created by eventsourcing-expert agent)
 
 ```python
 from uuid import UUID
@@ -211,11 +231,11 @@ class DjangoMyAggregateReadModel(MyAggregateReadModelInterface, PostgresTracking
 - Convert UUID to string for Django models
 - Handle not-found cases gracefully
 
-### Step 6: Define Django Model (if not exists)
+### Step 5: Reference Django Model Pattern
 
-Create database schema for read model:
+Django model defines database schema for read model:
 
-**File**: `models.py`
+**File**: `models.py` (created by eventsourcing-expert agent)
 
 ```python
 from django.db import models
@@ -247,18 +267,9 @@ class MyDjangoModel(models.Model):
 - Add indexes for query patterns
 - Include timestamps for audit trail
 
-### Step 7: Create Database Migration
+### Step 6: Understand Projection Registration Pattern
 
-Generate and apply migration:
-
-```bash
-python manage.py makemigrations
-python manage.py migrate
-```
-
-### Step 8: Register Projection with Runner
-
-Add projection to projection runner configuration:
+Projections are registered with projection runner configuration (eventsourcing-expert agent handles this):
 
 **File**: `apps/registry/projections.py` (or similar)
 
@@ -272,9 +283,9 @@ PROJECTIONS = [
 ]
 ```
 
-### Step 9: Write Tests
+### Step 7: Reference Testing Pattern
 
-Create comprehensive projection tests:
+Projection tests use mocks for isolation (eventsourcing-expert agent creates tests):
 
 **File**: `tests/test_<aggregate>_projection.py`
 
@@ -344,22 +355,15 @@ def test_projection_handles_deleted_event(projection, mock_read_model):
     mock_read_model.delete_my_entity.assert_called_once_with(aggregate_id=aggregate_id)
 ```
 
-### Step 10: Verify Projection
-
-Run tests:
-
-```bash
-pytest apps/registry/<bounded_context>/<aggregate>/tests/test_*_projection.py -v
-```
-
-Test manually with projection runner:
-
-```bash
-# Run projection runner (in sidecar container or locally)
-python manage.py run_projections
-```
+**Testing Principles:**
+- Mock the read model interface
+- Test event processing in isolation
+- Verify correct interface methods are called
+- No database access in unit tests
 
 ## Projection Patterns
+
+Choose the appropriate pattern based on your requirements. The eventsourcing-expert agent will implement the chosen pattern.
 
 ### Pattern 1: Simple Event-to-Model Projection
 
@@ -476,6 +480,25 @@ class TenantActivityProjection(Projection[TenantActivityReadModelInterface]):
             aggregate_id=event.originator_id
         )
 ```
+
+## Skill vs Agent Responsibilities
+
+### This Skill Provides (Architecture Reference)
+- CQRS architecture diagrams and concepts
+- 4 projection pattern descriptions and use cases
+- Component structure and organization principles
+- Django integration patterns and guidelines
+- Best practices and common pitfalls reference
+
+### eventsourcing-expert Agent Handles (Implementation)
+- Creating all projection files (projection.py, interfaces, Django models)
+- Writing event handlers and Django ORM code
+- Generating and running database migrations
+- Writing and running tests
+- Registering projections in projection runner
+- Debugging projection issues
+
+**Remember:** Use this skill for understanding and pattern selection, then delegate implementation to eventsourcing-expert agent.
 
 ## Best Practices
 

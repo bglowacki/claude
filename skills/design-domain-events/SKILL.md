@@ -1,11 +1,14 @@
 ---
 name: Design Domain Events
-description: |
-  Designs domain events for event-sourced aggregates following DDD and eventsourcing library patterns.
-  Use this when: defining new events, refactoring event structure, or ensuring event design best practices.
-  Triggers: "design event", "create event", "event definition", "domain event schema".
+description: Designs domain events for event-sourced aggregates following DDD and eventsourcing library patterns. Use this when: defining new events, refactoring event structure, or ensuring event design best practices. Triggers: "design event", "create event", "event definition", "domain event schema". Complements eventsourcing-expert agent for implementation.
 allowed-tools: [Read, Grep, Glob, mcp__context7__resolve-library-id, mcp__context7__get-library-docs]
 ---
+
+# Agent Collaboration
+
+**This skill helps with design decisions; use @eventsourcing-expert agent to implement the events.**
+
+This skill provides design guidance, validation checklists, and best practices for domain event structure. Once you've designed your events using this skill, the eventsourcing-expert agent can help you implement them in your codebase, create aggregates, set up projections, and integrate with your application.
 
 # Instructions
 
