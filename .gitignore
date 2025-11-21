@@ -8,10 +8,14 @@ projects/
 plugins/
 statsig/
 downloads/
+.claude/
 
 # History and logs
 history.jsonl
 *.log
+
+# Backup files
+*.backup
 
 # OS files
 .DS_Store

@@ -18,6 +18,15 @@
     "command": "npx -y ccstatusline@latest",
     "padding": 0
   },
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:docs.datadoghq.com)",
+      "WebFetch(domain:docs.datadoghq.eu)",
+      "WebFetch(domain:opentelemetry.io)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:pypi.org)"
+    ]
+  },
   "enabledPlugins": {
     "prompt-improver@claude-code-marketplace": true,
     "compounding-engineering@every-marketplace": true,
