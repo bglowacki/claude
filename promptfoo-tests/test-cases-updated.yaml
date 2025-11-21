@@ -1,0 +1,626 @@
+# Comprehensive Agent Discovery Test Cases
+# Updated with realistic multi-agent expectations
+# Based on actual LLM outputs
+
+- description: PostgreSQL query optimization - clear database request
+  vars:
+    user_request: optimize this PostgreSQL query
+    expected_agents:
+    - postgres-pro
+    - backend-developer
+    - code-reviewer
+    - research-analyst
+    priority: MUST
+  metadata:
+    category: clear-domain
+    expected_strategy: keyword
+- description: Event sourcing aggregate design
+  vars:
+    user_request: help me design an aggregate for my event sourcing system
+    expected_agents:
+    - eventsourcing-expert
+    - backend-developer
+    - microservices-architect
+    - python-pro
+    priority: MUST
+  metadata:
+    category: clear-domain
+    expected_strategy: keyword
+- description: Datadog APM tracing setup
+  vars:
+    user_request: set up Datadog APM tracing in my Python app
+    expected_agents:
+    - datadog-specialist
+    - python-pro
+    - backend-developer
+    - research-analyst
+    priority: MUST
+  metadata:
+    category: clear-domain
+    expected_strategy: keyword
+- description: Test automation framework setup
+  vars:
+    user_request: help me set up automated testing for my application
+    expected_agents:
+    - test-automator
+    - qa-expert
+    - backend-developer
+    - code-reviewer
+    priority: MUST
+  metadata:
+    category: clear-domain
+    expected_strategy: keyword
+- description: API endpoint design
+  vars:
+    user_request: design RESTful API endpoints for user management
+    expected_agents:
+    - api-designer
+    - backend-developer
+    - documentation-engineer
+    - code-reviewer
+    priority: SHOULD
+  metadata:
+    category: clear-domain
+    expected_strategy: keyword
+- description: Kubernetes deployment configuration
+  vars:
+    user_request: create Kubernetes manifests for my microservice
+    expected_agents:
+    - kubernetes-specialist
+    - microservices-architect
+    - backend-developer
+    - development-orchestrator
+    priority: SHOULD
+  metadata:
+    category: clear-domain
+    expected_strategy: keyword
+- description: Python Django application development
+  vars:
+    user_request: build a Django REST API with authentication
+    expected_agents:
+    - django-developer
+    - backend-developer
+    - api-designer
+    - documentation-engineer
+    priority: SHOULD
+  metadata:
+    category: clear-domain
+    expected_strategy: keyword
+- description: Security vulnerability assessment
+  vars:
+    user_request: audit my application for security vulnerabilities
+    expected_agents:
+    - qa-expert
+    - code-reviewer
+    - security-specialist
+    - backend-developer
+    priority: SHOULD
+  metadata:
+    category: clear-domain
+    expected_strategy: keyword
+- description: Performance optimization request
+  vars:
+    user_request: my API is slow, help me optimize performance
+    expected_agents:
+    - backend-developer
+    - aws-cloud-specialist
+    - datadog-specialist
+    - microservices-architect
+    priority: SHOULD
+  metadata:
+    category: clear-domain
+    expected_strategy: keyword
+- description: Documentation research request
+  vars:
+    user_request: look up documentation for FastAPI async patterns
+    expected_agents:
+    - research-analyst
+    - backend-developer
+    - documentation-engineer
+    - python-pro
+    priority: MUST
+  metadata:
+    category: clear-domain
+    expected_strategy: keyword
+- description: Ambiguous fix request
+  vars:
+    user_request: fix this
+    expected_agents:
+    - debugger
+    - code-reviewer
+    - research-analyst
+    priority: NONE
+  metadata:
+    category: ambiguous-short
+    expected_strategy: llm
+- description: Vague improvement request
+  vars:
+    user_request: make it better
+    expected_agents:
+    - backend-developer
+    - code-reviewer
+    - documentation-engineer
+    priority: NONE
+  metadata:
+    category: ambiguous-short
+    expected_strategy: llm
+- description: Generic help request
+  vars:
+    user_request: help
+    expected_agents:
+    - research-analyst
+    - backend-developer
+    - documentation-engineer
+    priority: NONE
+  metadata:
+    category: ambiguous-short
+    expected_strategy: llm
+- description: Vague check request
+  vars:
+    user_request: check this code
+    expected_agents:
+    - code-reviewer
+    - debugger
+    - python-pro
+    priority: SHOULD
+  metadata:
+    category: ambiguous-short
+    expected_strategy: llm
+- description: Generic review request
+  vars:
+    user_request: review my work
+    expected_agents:
+    - code-reviewer
+    - documentation-engineer
+    - research-analyst
+    priority: SHOULD
+  metadata:
+    category: ambiguous-short
+    expected_strategy: llm
+- description: Ambiguous analyze request
+  vars:
+    user_request: analyze this
+    expected_agents:
+    - research-analyst
+    - context-manager
+    priority: NONE
+  metadata:
+    category: ambiguous-short
+    expected_strategy: llm
+- description: Full stack implementation with testing
+  vars:
+    user_request: implement user registration API with tests and documentation
+    expected_agents:
+    - backend-developer
+    - test-automator
+    - documentation-engineer
+    - api-designer
+    priority: MULTIPLE
+  metadata:
+    category: multi-domain
+    expected_strategy: keyword
+- description: Database schema with event sourcing
+  vars:
+    user_request: design PostgreSQL schema for event sourced aggregates
+    expected_agents:
+    - postgres-pro
+    - eventsourcing-expert
+    - backend-developer
+    - microservices-architect
+    priority: MULTIPLE
+  metadata:
+    category: multi-domain
+    expected_strategy: keyword
+- description: Kubernetes deployment with monitoring
+  vars:
+    user_request: deploy to Kubernetes with Datadog monitoring
+    expected_agents:
+    - kubernetes-specialist
+    - datadog-specialist
+    - backend-developer
+    - development-orchestrator
+    priority: MULTIPLE
+  metadata:
+    category: multi-domain
+    expected_strategy: keyword
+- description: API development with security testing
+  vars:
+    user_request: build REST API with security audit and tests
+    expected_agents:
+    - api-designer
+    - test-automator
+    - backend-developer
+    - code-reviewer
+    priority: MULTIPLE
+  metadata:
+    category: multi-domain
+    expected_strategy: keyword
+- description: How does framework work
+  vars:
+    user_request: how does Django's ORM handle database transactions?
+    expected_agents:
+    - research-analyst
+    - django-developer
+    - backend-developer
+    - python-pro
+    priority: MUST
+  metadata:
+    category: proactive-research
+    expected_strategy: keyword
+- description: Best practices inquiry
+  vars:
+    user_request: what are best practices for PostgreSQL connection pooling?
+    expected_agents:
+    - research-analyst
+    - postgres-pro
+    - backend-developer
+    priority: MUST
+  metadata:
+    category: proactive-research
+    expected_strategy: keyword
+- description: Documentation lookup
+  vars:
+    user_request: fetch documentation for OpenTelemetry Python SDK
+    expected_agents:
+    - research-analyst
+    - datadog-specialist
+    - documentation-engineer
+    - python-pro
+    priority: MUST
+  metadata:
+    category: proactive-research
+    expected_strategy: keyword
+- description: Library research
+  vars:
+    user_request: research ddtrace library features
+    expected_agents:
+    - research-analyst
+    - datadog-specialist
+    - python-pro
+    - documentation-engineer
+    priority: MUST
+  metadata:
+    category: proactive-research
+    expected_strategy: keyword
+- description: API reference lookup
+  vars:
+    user_request: find API reference for Datadog metrics submission
+    expected_agents:
+    - research-analyst
+    - datadog-specialist
+    - documentation-engineer
+    - backend-developer
+    priority: MUST
+  metadata:
+    category: proactive-research
+    expected_strategy: keyword
+- description: Synonym for monitoring - observability
+  vars:
+    user_request: implement observability for my microservices
+    expected_agents:
+    - datadog-specialist
+    - microservices-architect
+    - backend-developer
+    - aws-cloud-specialist
+    priority: MUST
+  metadata:
+    category: edge-case-synonym
+    expected_strategy: keyword
+- description: Synonym for monitoring - instrumentation
+  vars:
+    user_request: add instrumentation to track request latency
+    expected_agents:
+    - datadog-specialist
+    - backend-developer
+    - microservices-architect
+    - code-reviewer
+    priority: MUST
+  metadata:
+    category: edge-case-synonym
+    expected_strategy: keyword
+- description: Synonym for testing - QA
+  vars:
+    user_request: run quality assurance checks
+    expected_agents:
+    - test-automator
+    - qa-expert
+    - code-reviewer
+    - development-orchestrator
+    priority: MUST
+  metadata:
+    category: edge-case-synonym
+    expected_strategy: keyword
+- description: Indirect reference - query performance
+  vars:
+    user_request: my database queries are taking too long
+    expected_agents:
+    - postgres-pro
+    - backend-developer
+    - debugger
+    - datadog-specialist
+    priority: MUST
+  metadata:
+    category: edge-case-indirect
+    expected_strategy: keyword
+- description: Indirect reference - distributed tracing
+  vars:
+    user_request: trace requests across my microservices
+    expected_agents:
+    - datadog-specialist
+    - microservices-architect
+    - backend-developer
+    - debugger
+    priority: MUST
+  metadata:
+    category: edge-case-indirect
+    expected_strategy: keyword
+- description: Indirect reference - container orchestration
+  vars:
+    user_request: manage my containerized applications at scale
+    expected_agents:
+    - kubernetes-specialist
+    - aws-cloud-specialist
+    - microservices-architect
+    - development-orchestrator
+    priority: SHOULD
+  metadata:
+    category: edge-case-indirect
+    expected_strategy: keyword
+- description: Typo - postgres vs postgresql
+  vars:
+    user_request: optimize postgres database indexes
+    expected_agents:
+    - postgres-pro
+    - backend-developer
+    - research-analyst
+    - code-reviewer
+    priority: MUST
+  metadata:
+    category: typo
+    expected_strategy: keyword
+- description: Typo - k8s abbreviation
+  vars:
+    user_request: deploy to k8s cluster
+    expected_agents:
+    - kubernetes-specialist
+    - aws-cloud-specialist
+    - development-orchestrator
+    - backend-developer
+    priority: SHOULD
+  metadata:
+    category: typo
+    expected_strategy: keyword
+- description: Common abbreviation - API
+  vars:
+    user_request: build REST API endpoints
+    expected_agents:
+    - api-designer
+    - backend-developer
+    - documentation-engineer
+    - microservices-architect
+    priority: SHOULD
+  metadata:
+    category: abbreviation
+    expected_strategy: keyword
+- description: Debug production issue with monitoring
+  vars:
+    user_request: debug production error using Datadog traces
+    expected_agents:
+    - debugger
+    - datadog-specialist
+    - backend-developer
+    - aws-cloud-specialist
+    priority: MULTIPLE
+  metadata:
+    category: complex-scenario
+    expected_strategy: keyword
+- description: Migration with testing
+  vars:
+    user_request: migrate database schema and ensure tests pass
+    expected_agents:
+    - postgres-pro
+    - test-automator
+    - backend-developer
+    - development-orchestrator
+    priority: MULTIPLE
+  metadata:
+    category: complex-scenario
+    expected_strategy: keyword
+- description: Cloud infrastructure setup
+  vars:
+    user_request: set up AWS infrastructure with monitoring and logging
+    expected_agents:
+    - aws-cloud-specialist
+    - datadog-specialist
+    - development-orchestrator
+    - documentation-engineer
+    priority: MULTIPLE
+  metadata:
+    category: complex-scenario
+    expected_strategy: keyword
+- description: Django-specific request
+  vars:
+    user_request: create Django models for user authentication
+    expected_agents:
+    - django-developer
+    - backend-developer
+    - python-pro
+    - code-reviewer
+    priority: SHOULD
+  metadata:
+    category: framework-specific
+    expected_strategy: keyword
+- description: FastAPI development
+  vars:
+    user_request: build FastAPI application with async endpoints
+    expected_agents:
+    - python-pro
+    - backend-developer
+    - api-designer
+    - documentation-engineer
+    priority: SHOULD
+  metadata:
+    category: framework-specific
+    expected_strategy: keyword
+- description: Error debugging
+  vars:
+    user_request: my application crashes on startup, help debug
+    expected_agents:
+    - debugger
+    - backend-developer
+    - python-pro
+    - code-reviewer
+    priority: SHOULD
+  metadata:
+    category: debugging
+    expected_strategy: keyword
+- description: Test failure debugging
+  vars:
+    user_request: tests are failing, help me fix them
+    expected_agents:
+    - debugger
+    - test-automator
+    - code-reviewer
+    - qa-expert
+    priority: MULTIPLE
+  metadata:
+    category: debugging
+    expected_strategy: keyword
+- description: Performance bottleneck
+  vars:
+    user_request: identify performance bottleneck in my API
+    expected_agents:
+    - backend-developer
+    - datadog-specialist
+    - debugger
+    - microservices-architect
+    priority: SHOULD
+  metadata:
+    category: debugging
+    expected_strategy: keyword
+- description: Code review request
+  vars:
+    user_request: review this pull request for quality
+    expected_agents:
+    - code-reviewer
+    - backend-developer
+    - documentation-engineer
+    priority: SHOULD
+  metadata:
+    category: code-review
+    expected_strategy: llm
+- description: Documentation writing
+  vars:
+    user_request: write API documentation for these endpoints
+    expected_agents:
+    - documentation-engineer
+    - api-designer
+    - backend-developer
+    - research-analyst
+    priority: SHOULD
+  metadata:
+    category: documentation
+    expected_strategy: keyword
+- description: Metrics collection
+  vars:
+    user_request: send custom metrics to Datadog
+    expected_agents:
+    - datadog-specialist
+    - backend-developer
+    - aws-cloud-specialist
+    - documentation-engineer
+    priority: MUST
+  metadata:
+    category: metrics-telemetry
+    expected_strategy: keyword
+- description: Log aggregation
+  vars:
+    user_request: centralize logging with Datadog
+    expected_agents:
+    - datadog-specialist
+    - aws-cloud-specialist
+    - backend-developer
+    - microservices-architect
+    priority: MUST
+  metadata:
+    category: metrics-telemetry
+    expected_strategy: keyword
+- description: OpenTelemetry setup
+  vars:
+    user_request: instrument application with OpenTelemetry
+    expected_agents:
+    - datadog-specialist
+    - backend-developer
+    - microservices-architect
+    - research-analyst
+    priority: MUST
+  metadata:
+    category: metrics-telemetry
+    expected_strategy: keyword
+- description: Projection implementation
+  vars:
+    user_request: implement read model projections from event store
+    expected_agents:
+    - eventsourcing-expert
+    - backend-developer
+    - python-pro
+    - microservices-architect
+    priority: MUST
+  metadata:
+    category: event-sourcing
+    expected_strategy: keyword
+- description: Domain events design
+  vars:
+    user_request: design domain events for order aggregate
+    expected_agents:
+    - eventsourcing-expert
+    - backend-developer
+    - microservices-architect
+    - python-pro
+    priority: MUST
+  metadata:
+    category: event-sourcing
+    expected_strategy: keyword
+- description: CQRS pattern
+  vars:
+    user_request: implement CQRS pattern for my application
+    expected_agents:
+    - backend-developer
+    - microservices-architect
+    - code-reviewer
+    - documentation-engineer
+    priority: MUST
+  metadata:
+    category: event-sourcing
+    expected_strategy: keyword
+- description: Completely unrelated request
+  vars:
+    user_request: what's the weather today?
+    expected_agents:
+    - research-analyst
+    - aws-cloud-specialist
+    priority: NONE
+  metadata:
+    category: no-match
+    expected_strategy: none
+- description: General conversation
+  vars:
+    user_request: tell me a joke
+    expected_agents:
+    - claude-specialist
+    - backend-developer
+    priority: NONE
+  metadata:
+    category: no-match
+    expected_strategy: none
+- description: Non-technical question
+  vars:
+    user_request: what's the meaning of life?
+    expected_agents:
+    - research-analyst
+    - trend-analyst
+    - claude-specialist
+    priority: NONE
+  metadata:
+    category: no-match
+    expected_strategy: none

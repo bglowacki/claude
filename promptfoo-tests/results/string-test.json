@@ -1,0 +1,256 @@
+{
+  "evalId": "eval-1zB-2025-11-21T12:03:56",
+  "results": {
+    "version": 3,
+    "timestamp": "2025-11-21T12:03:56.040Z",
+    "prompts": [
+      {
+        "raw": "Analyze this request and suggest 1-5 most relevant agents.\n\nREQUEST: {{user_request}}\n\nAGENTS:\n- api-designer: Expert in RESTful API design, GraphQL, API documentation, versioning, and best practices for scalable API architectures\n- aws-cloud-specialist: PROACTIVE AWS cloud specialist - auto-engages for AWS services, CloudFormation, Lambda, ECS, RDS, S3, IAM, CloudWatch. Validates via Context7 MCP and WebFetch\n- backend-developer: Backend development specialist focused on server-side logic, API design, database integration, and scalable system architecture\n- claude-specialist: Expert in Claude AI API, Anthropic SDKs, prompt engineering, and AI integration best practices\n- code-reviewer: Systematic code review specialist analyzing code quality, best practices, security, performance, and maintainability\n- context-manager: Context window optimization specialist managing token usage, compaction strategies, and conversation efficiency\n- datadog-specialist: PROACTIVE Datadog and observability specialist - auto-engages for Datadog, OpenTelemetry, StatsD, DogStatsD, ddtrace, APM, distributed tracing, metrics collection, log aggregation, observability, monitoring. Validates via Context7 MCP and WebFetch\n- debugger: Debugging specialist skilled in troubleshooting, error analysis, diagnostic techniques, and systematic problem resolution\n- development-orchestrator: PROACTIVE orchestrator for complex multi-phase development workflows requiring 3+ specialized agents with sequential dependencies and quality gates\n- django-developer: Django development specialist with expertise in Django REST Framework, ORM, migrations, and Django best practices\n- documentation-engineer: Technical documentation specialist creating clear, comprehensive documentation including API docs, guides, and technical writing\n- eventsourcing-expert: Expert in Python eventsourcing library. Use proactively when working with event sourcing patterns, aggregates, domain events, event stores, projections, or when eventsourcing library is mentioned\n- github-installation-specialist: PROACTIVE GitHub Apps specialist - auto-engages for GitHub App development, installation authentication, GitHub API integration, webhook handling, and GitHub Apps best practices\n- kubernetes-specialist: Kubernetes specialist expert in container orchestration, deployments, services, scaling, and Kubernetes ecosystem tools\n- microservices-architect: Microservices architecture specialist designing distributed systems, service boundaries, inter-service communication, and resilience patterns\n- postgres-pro: Expert PostgreSQL specialist mastering database administration, performance optimization, and high availability\n- promptfoo-specialist: PROACTIVE promptfoo specialist for LLM testing, prompt evaluation, red teaming, and AI quality assurance\n- python-pro: Python development specialist with deep expertise in Python best practices, patterns, standard library, and ecosystem\n- qa-expert: Quality assurance specialist focused on testing strategies, quality metrics, and comprehensive QA processes\n- research-analyst: PROACTIVE research analyst - auto-engages for documentation lookups, library/framework research, best practices discovery, and comprehensive information gathering\n- task-distributor: Task orchestration specialist coordinating parallel execution of independent tasks across multiple specialized agents\n- test-automator: PROACTIVE test automation specialist - automatically engages when user mentions tests, testing, test automation, test frameworks, test coverage\n- toolkit-manager: PROACTIVE meta-agent for analyzing, improving, and managing the agent/skill toolkit itself\n- trend-analyst: Trend analysis and forecasting specialist identifying patterns, predicting trajectories, and providing strategic insights\n\nCRITICAL: Return ONLY comma-separated agent names (e.g., agent1,agent2) or NONE if unclear.\n\nSTRICT RULES:\n- NO explanations, rationales, or reasoning\n- NO extra text before or after the agent names\n- JUST the comma-separated list, nothing else\n- If unclear, return exactly: NONE\n",
+        "label": "Analyze this request and suggest 1-5 most relevant agents.\n\nREQUEST: {{user_request}}\n\nAGENTS:\n- api-designer: Expert in RESTful API design, GraphQL, API documentation, versioning, and best practices for scalable API architectures\n- aws-cloud-specialist: PROACTIVE AWS cloud specialist - auto-engages for AWS services, CloudFormation, Lambda, ECS, RDS, S3, IAM, CloudWatch. Validates via Context7 MCP and WebFetch\n- backend-developer: Backend development specialist focused on server-side logic, API design, database integration, and scalable system architecture\n- claude-specialist: Expert in Claude AI API, Anthropic SDKs, prompt engineering, and AI integration best practices\n- code-reviewer: Systematic code review specialist analyzing code quality, best practices, security, performance, and maintainability\n- context-manager: Context window optimization specialist managing token usage, compaction strategies, and conversation efficiency\n- datadog-specialist: PROACTIVE Datadog and observability specialist - auto-engages for Datadog, OpenTelemetry, StatsD, DogStatsD, ddtrace, APM, distributed tracing, metrics collection, log aggregation, observability, monitoring. Validates via Context7 MCP and WebFetch\n- debugger: Debugging specialist skilled in troubleshooting, error analysis, diagnostic techniques, and systematic problem resolution\n- development-orchestrator: PROACTIVE orchestrator for complex multi-phase development workflows requiring 3+ specialized agents with sequential dependencies and quality gates\n- django-developer: Django development specialist with expertise in Django REST Framework, ORM, migrations, and Django best practices\n- documentation-engineer: Technical documentation specialist creating clear, comprehensive documentation including API docs, guides, and technical writing\n- eventsourcing-expert: Expert in Python eventsourcing library. Use proactively when working with event sourcing patterns, aggregates, domain events, event stores, projections, or when eventsourcing library is mentioned\n- github-installation-specialist: PROACTIVE GitHub Apps specialist - auto-engages for GitHub App development, installation authentication, GitHub API integration, webhook handling, and GitHub Apps best practices\n- kubernetes-specialist: Kubernetes specialist expert in container orchestration, deployments, services, scaling, and Kubernetes ecosystem tools\n- microservices-architect: Microservices architecture specialist designing distributed systems, service boundaries, inter-service communication, and resilience patterns\n- postgres-pro: Expert PostgreSQL specialist mastering database administration, performance optimization, and high availability\n- promptfoo-specialist: PROACTIVE promptfoo specialist for LLM testing, prompt evaluation, red teaming, and AI quality assurance\n- python-pro: Python development specialist with deep expertise in Python best practices, patterns, standard library, and ecosystem\n- qa-expert: Quality assurance specialist focused on testing strategies, quality metrics, and comprehensive QA processes\n- research-analyst: PROACTIVE research analyst - auto-engages for documentation lookups, library/framework research, best practices discovery, and comprehensive information gathering\n- task-distributor: Task orchestration specialist coordinating parallel execution of independent tasks across multiple specialized agents\n- test-automator: PROACTIVE test automation specialist - automatically engages when user mentions tests, testing, test automation, test frameworks, test coverage\n- toolkit-manager: PROACTIVE meta-agent for analyzing, improving, and managing the agent/skill toolkit itself\n- trend-analyst: Trend analysis and forecasting specialist identifying patterns, predicting trajectories, and providing strategic insights\n\nCRITICAL: Return ONLY comma-separated agent names (e.g., agent1,agent2) or NONE if unclear.\n\nSTRICT RULES:\n- NO explanations, rationales, or reasoning\n- NO extra text before or after the agent names\n- JUST the comma-separated list, nothing else\n- If unclear, return exactly: NONE\n",
+        "id": "2b2bff6be4abade518729b48a4403bf19a622d0c147c4da72456cb99ea108b28",
+        "provider": "anthropic:claude-3-5-haiku-20241022",
+        "metrics": {
+          "score": 0.9375,
+          "testPassCount": 1,
+          "testFailCount": 0,
+          "testErrorCount": 0,
+          "assertPassCount": 4,
+          "assertFailCount": 0,
+          "totalLatencyMs": 18,
+          "tokenUsage": {
+            "prompt": 0,
+            "completion": 0,
+            "cached": 890,
+            "total": 890,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0
+            },
+            "assertions": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0,
+              "completionDetails": {
+                "reasoning": 0,
+                "acceptedPrediction": 0,
+                "rejectedPrediction": 0
+              }
+            }
+          },
+          "namedScores": {},
+          "namedScoresCount": {},
+          "cost": 0.0007792000000000001
+        }
+      }
+    ],
+    "results": [
+      {
+        "cost": 0.0007792000000000001,
+        "gradingResult": {
+          "pass": true,
+          "score": 0.9375,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Valid format"
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "All agent names are valid"
+            },
+            {
+              "pass": true,
+              "score": 0.7499999999999999,
+              "reason": "F1: 0.75, Precision: 0.60, Recall: 1.00 | Expected: [postgres-pro, backend-developer, code-reviewer] | Got: [postgres-pro, backend-developer, code-reviewer, research-analyst, debugger]"
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "PROACTIVE agents correctly handled"
+            }
+          ]
+        },
+        "id": "f34560a3-6452-4a1b-b83b-8d454d2d54f0",
+        "latencyMs": 18,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Analyze this request and suggest 1-5 most relevant agents.\n\nREQUEST: optimize PostgreSQL query\n\nAGENTS:\n- api-designer: Expert in RESTful API design, GraphQL, API documentation, versioning, and best practices for scalable API architectures\n- aws-cloud-specialist: PROACTIVE AWS cloud specialist - auto-engages for AWS services, CloudFormation, Lambda, ECS, RDS, S3, IAM, CloudWatch. Validates via Context7 MCP and WebFetch\n- backend-developer: Backend development specialist focused on server-side logic, API design, database integration, and scalable system architecture\n- claude-specialist: Expert in Claude AI API, Anthropic SDKs, prompt engineering, and AI integration best practices\n- code-reviewer: Systematic code review specialist analyzing code quality, best practices, security, performance, and maintainability\n- context-manager: Context window optimization specialist managing token usage, compaction strategies, and conversation efficiency\n- datadog-specialist: PROACTIVE Datadog and observability specialist - auto-engages for Datadog, OpenTelemetry, StatsD, DogStatsD, ddtrace, APM, distributed tracing, metrics collection, log aggregation, observability, monitoring. Validates via Context7 MCP and WebFetch\n- debugger: Debugging specialist skilled in troubleshooting, error analysis, diagnostic techniques, and systematic problem resolution\n- development-orchestrator: PROACTIVE orchestrator for complex multi-phase development workflows requiring 3+ specialized agents with sequential dependencies and quality gates\n- django-developer: Django development specialist with expertise in Django REST Framework, ORM, migrations, and Django best practices\n- documentation-engineer: Technical documentation specialist creating clear, comprehensive documentation including API docs, guides, and technical writing\n- eventsourcing-expert: Expert in Python eventsourcing library. Use proactively when working with event sourcing patterns, aggregates, domain events, event stores, projections, or when eventsourcing library is mentioned\n- github-installation-specialist: PROACTIVE GitHub Apps specialist - auto-engages for GitHub App development, installation authentication, GitHub API integration, webhook handling, and GitHub Apps best practices\n- kubernetes-specialist: Kubernetes specialist expert in container orchestration, deployments, services, scaling, and Kubernetes ecosystem tools\n- microservices-architect: Microservices architecture specialist designing distributed systems, service boundaries, inter-service communication, and resilience patterns\n- postgres-pro: Expert PostgreSQL specialist mastering database administration, performance optimization, and high availability\n- promptfoo-specialist: PROACTIVE promptfoo specialist for LLM testing, prompt evaluation, red teaming, and AI quality assurance\n- python-pro: Python development specialist with deep expertise in Python best practices, patterns, standard library, and ecosystem\n- qa-expert: Quality assurance specialist focused on testing strategies, quality metrics, and comprehensive QA processes\n- research-analyst: PROACTIVE research analyst - auto-engages for documentation lookups, library/framework research, best practices discovery, and comprehensive information gathering\n- task-distributor: Task orchestration specialist coordinating parallel execution of independent tasks across multiple specialized agents\n- test-automator: PROACTIVE test automation specialist - automatically engages when user mentions tests, testing, test automation, test frameworks, test coverage\n- toolkit-manager: PROACTIVE meta-agent for analyzing, improving, and managing the agent/skill toolkit itself\n- trend-analyst: Trend analysis and forecasting specialist identifying patterns, predicting trajectories, and providing strategic insights\n\nCRITICAL: Return ONLY comma-separated agent names (e.g., agent1,agent2) or NONE if unclear.\n\nSTRICT RULES:\n- NO explanations, rationales, or reasoning\n- NO extra text before or after the agent names\n- JUST the comma-separated list, nothing else\n- If unclear, return exactly: NONE\n",
+          "label": "Analyze this request and suggest 1-5 most relevant agents.\n\nREQUEST: {{user_request}}\n\nAGENTS:\n- api-designer: Expert in RESTful API design, GraphQL, API documentation, versioning, and best practices for scalable API architectures\n- aws-cloud-specialist: PROACTIVE AWS cloud specialist - auto-engages for AWS services, CloudFormation, Lambda, ECS, RDS, S3, IAM, CloudWatch. Validates via Context7 MCP and WebFetch\n- backend-developer: Backend development specialist focused on server-side logic, API design, database integration, and scalable system architecture\n- claude-specialist: Expert in Claude AI API, Anthropic SDKs, prompt engineering, and AI integration best practices\n- code-reviewer: Systematic code review specialist analyzing code quality, best practices, security, performance, and maintainability\n- context-manager: Context window optimization specialist managing token usage, compaction strategies, and conversation efficiency\n- datadog-specialist: PROACTIVE Datadog and observability specialist - auto-engages for Datadog, OpenTelemetry, StatsD, DogStatsD, ddtrace, APM, distributed tracing, metrics collection, log aggregation, observability, monitoring. Validates via Context7 MCP and WebFetch\n- debugger: Debugging specialist skilled in troubleshooting, error analysis, diagnostic techniques, and systematic problem resolution\n- development-orchestrator: PROACTIVE orchestrator for complex multi-phase development workflows requiring 3+ specialized agents with sequential dependencies and quality gates\n- django-developer: Django development specialist with expertise in Django REST Framework, ORM, migrations, and Django best practices\n- documentation-engineer: Technical documentation specialist creating clear, comprehensive documentation including API docs, guides, and technical writing\n- eventsourcing-expert: Expert in Python eventsourcing library. Use proactively when working with event sourcing patterns, aggregates, domain events, event stores, projections, or when eventsourcing library is mentioned\n- github-installation-specialist: PROACTIVE GitHub Apps specialist - auto-engages for GitHub App development, installation authentication, GitHub API integration, webhook handling, and GitHub Apps best practices\n- kubernetes-specialist: Kubernetes specialist expert in container orchestration, deployments, services, scaling, and Kubernetes ecosystem tools\n- microservices-architect: Microservices architecture specialist designing distributed systems, service boundaries, inter-service communication, and resilience patterns\n- postgres-pro: Expert PostgreSQL specialist mastering database administration, performance optimization, and high availability\n- promptfoo-specialist: PROACTIVE promptfoo specialist for LLM testing, prompt evaluation, red teaming, and AI quality assurance\n- python-pro: Python development specialist with deep expertise in Python best practices, patterns, standard library, and ecosystem\n- qa-expert: Quality assurance specialist focused on testing strategies, quality metrics, and comprehensive QA processes\n- research-analyst: PROACTIVE research analyst - auto-engages for documentation lookups, library/framework research, best practices discovery, and comprehensive information gathering\n- task-distributor: Task orchestration specialist coordinating parallel execution of independent tasks across multiple specialized agents\n- test-automator: PROACTIVE test automation specialist - automatically engages when user mentions tests, testing, test automation, test frameworks, test coverage\n- toolkit-manager: PROACTIVE meta-agent for analyzing, improving, and managing the agent/skill toolkit itself\n- trend-analyst: Trend analysis and forecasting specialist identifying patterns, predicting trajectories, and providing strategic insights\n\nCRITICAL: Return ONLY comma-separated agent names (e.g., agent1,agent2) or NONE if unclear.\n\nSTRICT RULES:\n- NO explanations, rationales, or reasoning\n- NO extra text before or after the agent names\n- JUST the comma-separated list, nothing else\n- If unclear, return exactly: NONE\n"
+        },
+        "promptId": "2b2bff6be4abade518729b48a4403bf19a622d0c147c4da72456cb99ea108b28",
+        "promptIdx": 0,
+        "provider": {
+          "id": "anthropic:claude-3-5-haiku-20241022",
+          "label": ""
+        },
+        "response": {
+          "output": "postgres-pro,backend-developer,code-reviewer,research-analyst,debugger",
+          "tokenUsage": {
+            "cached": 890,
+            "total": 890
+          },
+          "finishReason": "stop",
+          "cost": 0.0007792000000000001
+        },
+        "score": 0.9375,
+        "success": true,
+        "testCase": {
+          "description": "Test comma-separated string",
+          "vars": {
+            "user_request": "optimize PostgreSQL query",
+            "expected_agents": "postgres-pro,backend-developer,code-reviewer"
+          },
+          "metadata": {
+            "category": "test"
+          },
+          "assert": [
+            {
+              "type": "javascript",
+              "value": "// Response should be agent names or NONE\nconst trimmed = output.trim();\nif (trimmed === 'NONE') return { pass: true, score: 1 };\n\n// Check format: comma-separated names, no extra text\nconst hasExtraText = /[^a-z0-9,\\-_\\s]/i.test(trimmed);\nif (hasExtraText) {\n  return {\n    pass: false,\n    score: 0,\n    reason: 'Response contains invalid characters or extra text'\n  };\n}\n\nconst agents = trimmed.split(',').map(a => a.trim()).filter(a => a);\nconst validCount = agents.length >= 1 && agents.length <= 5;\n\nreturn {\n  pass: validCount,\n  score: validCount ? 1 : 0,\n  reason: validCount ? 'Valid format' : `Invalid agent count: ${agents.length}`\n};\n"
+            },
+            {
+              "type": "javascript",
+              "value": "const validAgents = [\n  'api-designer', 'aws-cloud-specialist', 'backend-developer', 'claude-specialist',\n  'code-reviewer', 'context-manager', 'datadog-specialist', 'debugger',\n  'development-orchestrator', 'django-developer', 'documentation-engineer',\n  'eventsourcing-expert', 'github-installation-specialist', 'kubernetes-specialist',\n  'microservices-architect', 'postgres-pro', 'promptfoo-specialist', 'python-pro',\n  'qa-expert', 'research-analyst', 'task-distributor', 'test-automator',\n  'toolkit-manager', 'trend-analyst'\n];\n\nconst trimmed = output.trim();\nif (trimmed === 'NONE') return { pass: true, score: 1 };\n\nconst suggested = trimmed.split(',').map(a => a.trim()).filter(a => a);\nconst invalid = suggested.filter(a => !validAgents.includes(a));\n\nif (invalid.length > 0) {\n  return {\n    pass: false,\n    score: 0,\n    reason: `Invalid agent names: ${invalid.join(', ')}`\n  };\n}\n\nreturn { pass: true, score: 1, reason: 'All agent names are valid' };\n"
+            },
+            {
+              "type": "javascript",
+              "value": "// Get expected agents from test metadata (comma-separated string)\nlet expectedStr = context.vars.expected_agents || '';\n// Convert comma-separated string to array\nlet expected = expectedStr ? expectedStr.split(',').map(a => a.trim()) : [];\nif (expected.length === 0 || expected[0] === 'NONE') {\n  // For NONE expectations, check that output is NONE\n  const trimmed = output.trim();\n  return {\n    pass: trimmed === 'NONE' || trimmed === '',\n    score: (trimmed === 'NONE' || trimmed === '') ? 1 : 0,\n    reason: trimmed === 'NONE' ? 'Correctly returned NONE' : 'Should have returned NONE'\n  };\n}\n\nconst trimmed = output.trim();\nif (trimmed === 'NONE') {\n  return {\n    pass: false,\n    score: 0,\n    reason: `Expected agents ${expected.join(', ')} but got NONE`\n  };\n}\n\nconst suggested = trimmed.split(',').map(a => a.trim()).filter(a => a);\n\n// Calculate precision, recall, F1\nconst expectedSet = new Set(expected);\nconst suggestedSet = new Set(suggested);\n\nconst truePositives = suggested.filter(a => expectedSet.has(a)).length;\nconst falsePositives = suggested.filter(a => !expectedSet.has(a)).length;\nconst falseNegatives = expected.filter(a => !suggestedSet.has(a)).length;\n\nconst precision = truePositives / (truePositives + falsePositives) || 0;\nconst recall = truePositives / (truePositives + falseNegatives) || 0;\nconst f1 = precision + recall > 0 ? (2 * precision * recall) / (precision + recall) : 0;\n\n// Pass if F1 >= 0.7 (allows some flexibility for multi-agent scenarios)\nconst pass = f1 >= 0.7;\n\nreturn {\n  pass: pass,\n  score: f1,\n  reason: `F1: ${f1.toFixed(2)}, Precision: ${precision.toFixed(2)}, Recall: ${recall.toFixed(2)} | Expected: [${expected.join(', ')}] | Got: [${suggested.join(', ')}]`\n};\n"
+            },
+            {
+              "type": "javascript",
+              "value": "const proactiveAgents = {\n  'datadog-specialist': ['datadog', 'observability', 'monitoring', 'metrics', 'telemetry', 'tracing', 'apm', 'opentelemetry', 'instrumentation'],\n  'research-analyst': ['how does', 'how do', 'best practices', 'documentation', 'look up', 'fetch docs', 'research', 'api reference'],\n  'test-automator': ['test', 'testing', 'qa', 'quality', 'coverage'],\n  'aws-cloud-specialist': ['aws', 'cloudformation', 'lambda', 's3', 'rds', 'iam'],\n  'eventsourcing-expert': ['event sourcing', 'aggregate', 'projection', 'domain event', 'cqrs', 'event store'],\n  'promptfoo-specialist': ['promptfoo', 'llm testing', 'prompt evaluation', 'red team'],\n  'toolkit-manager': ['agent', 'skill', 'toolkit']\n};\n\nconst request = (context.vars.user_request || '').toLowerCase();\nconst trimmed = output.trim();\nconst suggested = trimmed === 'NONE' ? [] : trimmed.split(',').map(a => a.trim());\n\nlet violations = [];\nfor (const [agent, triggers] of Object.entries(proactiveAgents)) {\n  const hasTriggered = triggers.some(t => request.includes(t));\n  const wasSuggested = suggested.includes(agent);\n\n  if (hasTriggered && !wasSuggested) {\n    violations.push(`PROACTIVE agent ${agent} should trigger but was not suggested`);\n  }\n}\n\nif (violations.length > 0) {\n  return {\n    pass: false,\n    score: 0,\n    reason: violations.join('; ')\n  };\n}\n\nreturn { pass: true, score: 1, reason: 'PROACTIVE agents correctly handled' };\n"
+            }
+          ],
+          "options": {}
+        },
+        "testIdx": 0,
+        "vars": {
+          "user_request": "optimize PostgreSQL query",
+          "expected_agents": "postgres-pro,backend-developer,code-reviewer"
+        },
+        "metadata": {
+          "category": "test",
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      }
+    ],
+    "stats": {
+      "successes": 1,
+      "failures": 0,
+      "errors": 0,
+      "tokenUsage": {
+        "prompt": 0,
+        "completion": 0,
+        "cached": 890,
+        "total": 890,
+        "numRequests": 1,
+        "completionDetails": {
+          "reasoning": 0,
+          "acceptedPrediction": 0,
+          "rejectedPrediction": 0
+        },
+        "assertions": {
+          "total": 0,
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "numRequests": 0,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0
+          }
+        }
+      }
+    }
+  },
+  "config": {
+    "tags": {},
+    "description": "Agent Discovery Hook - LLM Matching Evaluation",
+    "prompts": [
+      "Analyze this request and suggest 1-5 most relevant agents.\n\nREQUEST: {{user_request}}\n\nAGENTS:\n- api-designer: Expert in RESTful API design, GraphQL, API documentation, versioning, and best practices for scalable API architectures\n- aws-cloud-specialist: PROACTIVE AWS cloud specialist - auto-engages for AWS services, CloudFormation, Lambda, ECS, RDS, S3, IAM, CloudWatch. Validates via Context7 MCP and WebFetch\n- backend-developer: Backend development specialist focused on server-side logic, API design, database integration, and scalable system architecture\n- claude-specialist: Expert in Claude AI API, Anthropic SDKs, prompt engineering, and AI integration best practices\n- code-reviewer: Systematic code review specialist analyzing code quality, best practices, security, performance, and maintainability\n- context-manager: Context window optimization specialist managing token usage, compaction strategies, and conversation efficiency\n- datadog-specialist: PROACTIVE Datadog and observability specialist - auto-engages for Datadog, OpenTelemetry, StatsD, DogStatsD, ddtrace, APM, distributed tracing, metrics collection, log aggregation, observability, monitoring. Validates via Context7 MCP and WebFetch\n- debugger: Debugging specialist skilled in troubleshooting, error analysis, diagnostic techniques, and systematic problem resolution\n- development-orchestrator: PROACTIVE orchestrator for complex multi-phase development workflows requiring 3+ specialized agents with sequential dependencies and quality gates\n- django-developer: Django development specialist with expertise in Django REST Framework, ORM, migrations, and Django best practices\n- documentation-engineer: Technical documentation specialist creating clear, comprehensive documentation including API docs, guides, and technical writing\n- eventsourcing-expert: Expert in Python eventsourcing library. Use proactively when working with event sourcing patterns, aggregates, domain events, event stores, projections, or when eventsourcing library is mentioned\n- github-installation-specialist: PROACTIVE GitHub Apps specialist - auto-engages for GitHub App development, installation authentication, GitHub API integration, webhook handling, and GitHub Apps best practices\n- kubernetes-specialist: Kubernetes specialist expert in container orchestration, deployments, services, scaling, and Kubernetes ecosystem tools\n- microservices-architect: Microservices architecture specialist designing distributed systems, service boundaries, inter-service communication, and resilience patterns\n- postgres-pro: Expert PostgreSQL specialist mastering database administration, performance optimization, and high availability\n- promptfoo-specialist: PROACTIVE promptfoo specialist for LLM testing, prompt evaluation, red teaming, and AI quality assurance\n- python-pro: Python development specialist with deep expertise in Python best practices, patterns, standard library, and ecosystem\n- qa-expert: Quality assurance specialist focused on testing strategies, quality metrics, and comprehensive QA processes\n- research-analyst: PROACTIVE research analyst - auto-engages for documentation lookups, library/framework research, best practices discovery, and comprehensive information gathering\n- task-distributor: Task orchestration specialist coordinating parallel execution of independent tasks across multiple specialized agents\n- test-automator: PROACTIVE test automation specialist - automatically engages when user mentions tests, testing, test automation, test frameworks, test coverage\n- toolkit-manager: PROACTIVE meta-agent for analyzing, improving, and managing the agent/skill toolkit itself\n- trend-analyst: Trend analysis and forecasting specialist identifying patterns, predicting trajectories, and providing strategic insights\n\nCRITICAL: Return ONLY comma-separated agent names (e.g., agent1,agent2) or NONE if unclear.\n\nSTRICT RULES:\n- NO explanations, rationales, or reasoning\n- NO extra text before or after the agent names\n- JUST the comma-separated list, nothing else\n- If unclear, return exactly: NONE\n"
+    ],
+    "providers": [
+      {
+        "id": "anthropic:claude-3-5-haiku-20241022",
+        "config": {
+          "temperature": 0,
+          "max_tokens": 100
+        }
+      }
+    ],
+    "tests": [
+      {
+        "description": "Test comma-separated string",
+        "vars": {
+          "user_request": "optimize PostgreSQL query",
+          "expected_agents": "postgres-pro,backend-developer,code-reviewer"
+        },
+        "metadata": {
+          "category": "test"
+        }
+      }
+    ],
+    "scenarios": [],
+    "env": {},
+    "sharing": false,
+    "defaultTest": {
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "// Response should be agent names or NONE\nconst trimmed = output.trim();\nif (trimmed === 'NONE') return { pass: true, score: 1 };\n\n// Check format: comma-separated names, no extra text\nconst hasExtraText = /[^a-z0-9,\\-_\\s]/i.test(trimmed);\nif (hasExtraText) {\n  return {\n    pass: false,\n    score: 0,\n    reason: 'Response contains invalid characters or extra text'\n  };\n}\n\nconst agents = trimmed.split(',').map(a => a.trim()).filter(a => a);\nconst validCount = agents.length >= 1 && agents.length <= 5;\n\nreturn {\n  pass: validCount,\n  score: validCount ? 1 : 0,\n  reason: validCount ? 'Valid format' : `Invalid agent count: ${agents.length}`\n};\n"
+        },
+        {
+          "type": "javascript",
+          "value": "const validAgents = [\n  'api-designer', 'aws-cloud-specialist', 'backend-developer', 'claude-specialist',\n  'code-reviewer', 'context-manager', 'datadog-specialist', 'debugger',\n  'development-orchestrator', 'django-developer', 'documentation-engineer',\n  'eventsourcing-expert', 'github-installation-specialist', 'kubernetes-specialist',\n  'microservices-architect', 'postgres-pro', 'promptfoo-specialist', 'python-pro',\n  'qa-expert', 'research-analyst', 'task-distributor', 'test-automator',\n  'toolkit-manager', 'trend-analyst'\n];\n\nconst trimmed = output.trim();\nif (trimmed === 'NONE') return { pass: true, score: 1 };\n\nconst suggested = trimmed.split(',').map(a => a.trim()).filter(a => a);\nconst invalid = suggested.filter(a => !validAgents.includes(a));\n\nif (invalid.length > 0) {\n  return {\n    pass: false,\n    score: 0,\n    reason: `Invalid agent names: ${invalid.join(', ')}`\n  };\n}\n\nreturn { pass: true, score: 1, reason: 'All agent names are valid' };\n"
+        },
+        {
+          "type": "javascript",
+          "value": "// Get expected agents from test metadata (comma-separated string)\nlet expectedStr = context.vars.expected_agents || '';\n// Convert comma-separated string to array\nlet expected = expectedStr ? expectedStr.split(',').map(a => a.trim()) : [];\nif (expected.length === 0 || expected[0] === 'NONE') {\n  // For NONE expectations, check that output is NONE\n  const trimmed = output.trim();\n  return {\n    pass: trimmed === 'NONE' || trimmed === '',\n    score: (trimmed === 'NONE' || trimmed === '') ? 1 : 0,\n    reason: trimmed === 'NONE' ? 'Correctly returned NONE' : 'Should have returned NONE'\n  };\n}\n\nconst trimmed = output.trim();\nif (trimmed === 'NONE') {\n  return {\n    pass: false,\n    score: 0,\n    reason: `Expected agents ${expected.join(', ')} but got NONE`\n  };\n}\n\nconst suggested = trimmed.split(',').map(a => a.trim()).filter(a => a);\n\n// Calculate precision, recall, F1\nconst expectedSet = new Set(expected);\nconst suggestedSet = new Set(suggested);\n\nconst truePositives = suggested.filter(a => expectedSet.has(a)).length;\nconst falsePositives = suggested.filter(a => !expectedSet.has(a)).length;\nconst falseNegatives = expected.filter(a => !suggestedSet.has(a)).length;\n\nconst precision = truePositives / (truePositives + falsePositives) || 0;\nconst recall = truePositives / (truePositives + falseNegatives) || 0;\nconst f1 = precision + recall > 0 ? (2 * precision * recall) / (precision + recall) : 0;\n\n// Pass if F1 >= 0.7 (allows some flexibility for multi-agent scenarios)\nconst pass = f1 >= 0.7;\n\nreturn {\n  pass: pass,\n  score: f1,\n  reason: `F1: ${f1.toFixed(2)}, Precision: ${precision.toFixed(2)}, Recall: ${recall.toFixed(2)} | Expected: [${expected.join(', ')}] | Got: [${suggested.join(', ')}]`\n};\n"
+        },
+        {
+          "type": "javascript",
+          "value": "const proactiveAgents = {\n  'datadog-specialist': ['datadog', 'observability', 'monitoring', 'metrics', 'telemetry', 'tracing', 'apm', 'opentelemetry', 'instrumentation'],\n  'research-analyst': ['how does', 'how do', 'best practices', 'documentation', 'look up', 'fetch docs', 'research', 'api reference'],\n  'test-automator': ['test', 'testing', 'qa', 'quality', 'coverage'],\n  'aws-cloud-specialist': ['aws', 'cloudformation', 'lambda', 's3', 'rds', 'iam'],\n  'eventsourcing-expert': ['event sourcing', 'aggregate', 'projection', 'domain event', 'cqrs', 'event store'],\n  'promptfoo-specialist': ['promptfoo', 'llm testing', 'prompt evaluation', 'red team'],\n  'toolkit-manager': ['agent', 'skill', 'toolkit']\n};\n\nconst request = (context.vars.user_request || '').toLowerCase();\nconst trimmed = output.trim();\nconst suggested = trimmed === 'NONE' ? [] : trimmed.split(',').map(a => a.trim());\n\nlet violations = [];\nfor (const [agent, triggers] of Object.entries(proactiveAgents)) {\n  const hasTriggered = triggers.some(t => request.includes(t));\n  const wasSuggested = suggested.includes(agent);\n\n  if (hasTriggered && !wasSuggested) {\n    violations.push(`PROACTIVE agent ${agent} should trigger but was not suggested`);\n  }\n}\n\nif (violations.length > 0) {\n  return {\n    pass: false,\n    score: 0,\n    reason: violations.join('; ')\n  };\n}\n\nreturn { pass: true, score: 1, reason: 'PROACTIVE agents correctly handled' };\n"
+        }
+      ],
+      "vars": {},
+      "options": {},
+      "metadata": {}
+    },
+    "outputPath": [
+      "results/string-test.json"
+    ],
+    "extensions": [],
+    "metadata": {},
+    "evaluateOptions": {
+      "maxConcurrency": 10,
+      "cache": true,
+      "showProgressBar": true
+    }
+  },
+  "shareableUrl": null,
+  "metadata": {
+    "promptfooVersion": "0.119.9",
+    "nodeVersion": "v25.1.0",
+    "platform": "darwin",
+    "arch": "x64",
+    "exportedAt": "2025-11-21T12:03:56.135Z",
+    "evaluationCreatedAt": "2025-11-21T12:03:56.040Z"
+  }
+}

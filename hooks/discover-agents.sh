@@ -238,7 +238,13 @@ REQUEST: $request
 AGENTS:
 $agent_descriptions
 
-Return ONLY comma-separated agent names (e.g., agent1,agent2) or NONE if unclear."
+CRITICAL: Return ONLY comma-separated agent names (e.g., agent1,agent2) or NONE if unclear.
+
+STRICT RULES:
+- NO explanations, rationales, or reasoning
+- NO extra text before or after the agent names
+- JUST the comma-separated list, nothing else
+- If unclear, return exactly: NONE"
 
     local result=$(export CLAUDE_IN_HOOK=1; echo "$prompt" | claude --model haiku --print --dangerously-skip-permissions --tools "" 2>/dev/null)
 
