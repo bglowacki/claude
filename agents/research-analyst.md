@@ -1,6 +1,6 @@
 ---
 name: research-analyst
-description: Expert research analyst specializing in comprehensive information gathering, synthesis, and insight generation. Use proactively for conducting thorough research, synthesizing information from multiple sources, identifying trends, or generating strategic intelligence.
+description: PROACTIVE research analyst - auto-engages for documentation lookups, library/framework research, best practices discovery, and comprehensive information gathering. Triggers on "how does X work", "look up docs for Y", "research Z library", "find documentation about...", "what are best practices for...", "fetch docs", API references, framework guides, or any documentation/research request. Use WITHOUT waiting for explicit request when documentation validation needed.
 tools: Read, Grep, Glob, WebFetch, WebSearch
 color: cyan
 model: sonnet

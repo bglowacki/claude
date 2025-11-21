@@ -73,6 +73,123 @@
 
 ---
 
+## Agent Delegation Policy (CRITICAL)
+
+### MUST DELEGATE - No Direct Answers Allowed
+
+When the `discover-agents.sh` hook identifies agents as **REQUIRED** (marked with 🔴 MUST USE), you MUST delegate to them. These agents are marked as "PROACTIVE" or "auto-engages" in their descriptions, indicating specialized domain expertise or current documentation access.
+
+**Priority Levels:**
+
+#### 🔴 MUST USE (Non-Negotiable Delegation)
+1. **Domain Specialists with PROACTIVE flag:**
+   - datadog-specialist, aws-cloud-specialist, eventsourcing-expert, etc.
+   - These agents have up-to-date documentation access (WebFetch, Context7 MCP)
+   - ALWAYS delegate - DO NOT answer from training data
+   - Example: "Set up Datadog tracing" → MUST use datadog-specialist
+
+2. **Research/Documentation Requests:**
+   - research-analyst for "how does X work", "look up docs", "best practices"
+   - ALWAYS fetch current documentation via WebFetch/WebSearch
+   - DO NOT provide answers from training data (may be outdated)
+   - Example: "How does FastAPI handle async?" → MUST use research-analyst
+
+3. **Auto-Engage Agents:**
+   - code-reviewer (after code changes)
+   - development-orchestrator (complex multi-domain tasks)
+   - These trigger automatically based on context
+   - Example: After implementing a feature → code-reviewer MUST review
+
+#### 🟡 SHOULD USE (Recommended)
+- Specialized agents without PROACTIVE flag
+- Consider delegation for better quality
+- Use judgment based on task complexity
+- Can answer directly for simple queries
+
+### Delegation Decision Tree
+
+```
+User Request
+  ↓
+Hook runs → Discovers agents
+  ↓
+┌─────────────────────────────────┐
+│ Is agent marked 🔴 MUST USE?   │
+└─────────────────────────────────┘
+         ↓ YES                ↓ NO
+         ↓                    ↓
+  MUST DELEGATE          Use judgment:
+  Use Task tool          - Complex → delegate
+  DO NOT answer          - Simple → can answer
+  directly               - Research needed → delegate
+```
+
+### When Direct Answers Are Acceptable
+
+**You MAY answer directly ONLY when:**
+- ✅ No agents were suggested by the hook
+- ✅ Simple factual questions (basic concepts, definitions)
+- ✅ Clarifying questions to the user
+- ✅ Basic file operations using tools directly
+- ✅ Questions about your own capabilities
+
+**You MUST delegate when:**
+- ❌ Hook suggests 🔴 MUST USE agents
+- ❌ Research/documentation needed ("how does X work")
+- ❌ Domain-specific expertise required (AWS, Datadog, PostgreSQL)
+- ❌ Current/up-to-date information needed
+- ❌ Code review after changes
+- ❌ Complex multi-step implementations
+
+### Correct Delegation Pattern
+
+**Bad (Direct Answer):**
+```
+User: "How do I set up Datadog APM tracing in Python?"
+Assistant: "To set up Datadog APM tracing, use ddtrace..."
+❌ WRONG: Answered directly despite datadog-specialist being REQUIRED
+```
+
+**Good (Delegation):**
+```
+User: "How do I set up Datadog APM tracing in Python?"
+[Hook suggests: 🔴 MUST USE datadog-specialist]
+Assistant: "I'll delegate this to the datadog-specialist agent..."
+<uses Task tool with subagent_type="datadog-specialist">
+✅ CORRECT: Delegated to specialist with current docs access
+```
+
+### Why This Matters
+
+**Training data limitations:**
+- Your training data has a cutoff date (January 2025)
+- Libraries/frameworks update frequently
+- APIs change, best practices evolve
+- Documentation specialists fetch CURRENT information
+
+**Domain expertise:**
+- PROACTIVE agents have specialized prompts and workflows
+- They know domain-specific patterns and anti-patterns
+- They apply framework-specific best practices
+- They validate against official documentation
+
+**Quality assurance:**
+- Specialized agents follow rigorous validation steps
+- They cross-reference multiple sources
+- They provide implementation-tested solutions
+- They catch domain-specific edge cases
+
+### Enforcement
+
+The hook system will:
+1. **Pre-request:** Suggest agents with priority levels
+2. **Post-request:** (Future) Validate you used suggested agents
+3. **Feedback:** Warn if MUST USE agents were ignored
+
+**Remember:** When in doubt about whether to delegate, **delegate**. Specialized agents provide higher quality, more current, and more accurate responses than general knowledge.
+
+---
+
 ## Orchestration Patterns
 
 ### Parallel Invocation

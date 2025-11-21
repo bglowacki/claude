@@ -1,6 +1,6 @@
 ---
 name: toolkit-manager
-description: PROACTIVE toolkit manager - auto-engages for agent/skill/hook creation, analysis, configuration, optimization. Handles creation, redundancy analysis, standardization, batch operations.
+description: PROACTIVE toolkit manager for Claude Code ecosystem management. Use PROACTIVELY when users request to create/add/make/build/implement/modify/update/analyze/review/improve/standardize any agent, skill, or hook. Triggers include "create [name] agent", "add agent for [topic]", "make an agent that...", "build agent to...", "implement agent for...", "update agent", "analyze agents", "review agent", "check for redundancy", "standardize configuration", "improve toolkit", or any agent/skill/hook lifecycle operations.
 tools: Read, Write, Edit, Grep, Glob, WebFetch, Bash
 color: purple
 model: sonnet

@@ -195,6 +195,11 @@ keyword_match_agents() {
             echo "$desc_lower" | grep -qE "performance|optim|profil|bottleneck" && matched=true
         fi
 
+        # Research/Documentation
+        if echo "$request_lower" | grep -qE "research|documentation|\bhow does\b|\bhow do\b|look up|fetch docs|best practices|docs for|library.*docs|framework.*docs|api reference|\bfind docs\b|\bget docs\b"; then
+            echo "$desc_lower" | grep -qE "research|documentation|information gathering|best practices|comprehensive" && matched=true
+        fi
+
         # Infrastructure
         if echo "$request_lower" | grep -qE "kubernetes|k8s|container|docker|deploy|infra"; then
             echo "$desc_lower" | grep -qE "kubernetes|k8s|container|docker|deploy" && matched=true
@@ -274,6 +279,28 @@ analyze_parallelization() {
     fi
 }
 
+# Classify agent priority based on description
+classify_agent_priority() {
+    local agent="$1"
+    local desc=""
+
+    while IFS='|' read -r type name description; do
+        if [[ "$type" = "AGENT" ]] && [[ "$name" = "$agent" ]]; then
+            desc="$description"
+            break
+        fi
+    done < <(get_cached_metadata)
+
+    # MUST USE: Proactive agents with explicit auto-engage instructions
+    if echo "$desc" | grep -qE "PROACTIVE|MUST BE USED|auto-engages|automatically engages|Use WITHOUT waiting"; then
+        echo "MUST"
+        return 0
+    fi
+
+    # SHOULD USE: Other specialized agents
+    echo "SHOULD"
+}
+
 # Main execution
 ALL_AGENTS=$(discover_agents)
 ALL_SKILLS=$(discover_skills)
@@ -293,6 +320,32 @@ if [ -n "$USER_REQUEST" ]; then
     fi
 fi
 
+# Classify matched agents by priority
+MUST_USE_AGENTS=()
+SHOULD_USE_AGENTS=()
+
+if [ -n "$MATCHED_AGENTS" ]; then
+    for agent in $(echo "$MATCHED_AGENTS" | tr ',' ' '); do
+        priority=$(classify_agent_priority "$agent")
+        if [ "$priority" = "MUST" ]; then
+            MUST_USE_AGENTS+=("$agent")
+        else
+            SHOULD_USE_AGENTS+=("$agent")
+        fi
+    done
+fi
+
+# Cache suggested agents for validation hook
+VALIDATION_CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/claude-suggested-agents.cache"
+if [ -n "$MATCHED_AGENTS" ]; then
+    mkdir -p "$(dirname "$VALIDATION_CACHE")"
+    {
+        echo "AGENTS:$MATCHED_AGENTS"
+        echo "MUST_USE:$(IFS=','; echo "${MUST_USE_AGENTS[*]}")"
+        echo "SHOULD_USE:$(IFS=','; echo "${SHOULD_USE_AGENTS[*]}")"
+    } > "$VALIDATION_CACHE"
+fi
+
 PARALLEL_HINT=$([ -n "$USER_REQUEST" ] && analyze_parallelization "$USER_REQUEST")
 
 # Output
@@ -300,15 +353,62 @@ if [ "$QUIET_MODE" = "false" ]; then
     if [ -n "$MATCHED_AGENTS" ]; then
         cat <<EOF
 
-🎯 INTELLIGENT AGENT SELECTION:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚨 REQUIRED AGENTS - MUST DELEGATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EOF
 
-✨ HIGHLY RELEVANT AGENTS for this request:
-   → $MATCHED_AGENTS
+        if [ ${#MUST_USE_AGENTS[@]} -gt 0 ]; then
+            echo "🔴 MUST USE (Specialized/Proactive):"
+            for agent in "${MUST_USE_AGENTS[@]}"; do
+                echo "   → $agent"
+            done
+            echo
+            echo "⚠️  CRITICAL: These agents MUST handle this request."
+            echo "   DO NOT answer directly. Use: Task(subagent_type=\"$agent\", ...)"
+            echo
+        fi
+
+        if [ ${#SHOULD_USE_AGENTS[@]} -gt 0 ]; then
+            echo "🟡 SHOULD USE (Recommended):"
+            for agent in "${SHOULD_USE_AGENTS[@]}"; do
+                echo "   → $agent"
+            done
+            echo
+        fi
+
+        [[ "$MATCH_METHOD" = "llm" ]] && echo "💡 Deep LLM analysis selected these agents for your request."
+        [[ "$MATCH_METHOD" = "keyword" ]] && echo "💡 Domain keyword matching identified these specialized agents."
+        echo
+        echo "📊 Validation: Run ~/.claude/hooks/validate-agent-usage.sh to check if agents were used"
+        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        echo
+    else
+        # No agents matched - direct answers are acceptable
+        if [ -n "$USER_REQUEST" ]; then
+            cat <<'EOF'
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ NO SPECIALIZED AGENTS NEEDED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+No domain-specific agents matched this request.
+
+✅ Direct answers are acceptable for:
+   • General questions and explanations
+   • Simple code operations
+   • Clarifications and follow-ups
+   • Basic file operations
+
+💡 If you need specialized expertise, try:
+   • Being more specific about the domain (AWS, Datadog, testing, etc.)
+   • Mentioning specific technologies or frameworks
+   • Asking about best practices or documentation
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 EOF
-        [[ "$MATCH_METHOD" = "llm" ]] && echo "💡 Deep analysis used (ambiguous request). These agents were selected by LLM."
-        [[ "$MATCH_METHOD" = "keyword" ]] && echo "💡 Fast keyword matching. These agents match your request domain."
-        echo
+        fi
     fi
 
     if [ -n "$PARALLEL_HINT" ]; then
