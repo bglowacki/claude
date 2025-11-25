@@ -1,6 +1,6 @@
 ---
 name: trend-analyst
-description: Specialist in identifying emerging patterns, forecasting developments, and strategic foresight. Use proactively for trend identification, technology forecasting, market evolution analysis, or anticipating industry shifts.
+description: Specialist in identifying emerging patterns, forecasting developments, and strategic foresight. Use PROACTIVELY for trend identification, technology forecasting, market evolution analysis, or anticipating industry shifts.
 tools: Read, Grep, Glob, WebFetch, WebSearch
 color: pink
 model: sonnet

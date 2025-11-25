@@ -1,6 +1,6 @@
 ---
 name: eventsourcing-expert
-description: Expert in Python eventsourcing library. Use proactively when working with event sourcing patterns, aggregates, domain events, event stores, projections, or when eventsourcing library is mentioned. Provides documentation-backed guidance for implementing event sourcing in DDD applications.
+description: Expert in Python eventsourcing library. Use PROACTIVELY when working with event sourcing patterns, aggregates, domain events, event stores, projections, or when eventsourcing library is mentioned. Provides documentation-backed guidance for implementing event sourcing in DDD applications.
 tools: Read, Write, Edit, Grep, Glob, Bash, WebFetch, mcp__context7__resolve-library-id, mcp__context7__get-library-docs
 model: haiku
 color: purple

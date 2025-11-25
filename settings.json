@@ -1,4 +1,16 @@
 {
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:docs.datadoghq.com)",
+      "WebFetch(domain:docs.datadoghq.eu)",
+      "WebFetch(domain:opentelemetry.io)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:pypi.org)",
+      "WebSearch",
+      "WebFetch(domain:www.promptfoo.dev)",
+      "mcp__context7__get-library-docs"
+    ]
+  },
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -18,54 +30,23 @@
     "command": "npx -y ccstatusline@latest",
     "padding": 0
   },
-  "permissions": {
-    "allow": [
-      "WebFetch(domain:docs.datadoghq.com)",
-      "WebFetch(domain:docs.datadoghq.eu)",
-      "WebFetch(domain:opentelemetry.io)",
-      "WebFetch(domain:github.com)",
-      "WebFetch(domain:pypi.org)",
-      "WebSearch",
-      "WebFetch(domain:www.promptfoo.dev)",
-      "mcp__context7__get-library-docs"
-    ]
-  },
   "enabledPlugins": {
     "prompt-improver@claude-code-marketplace": true,
     "compounding-engineering@every-marketplace": true,
-    "query-performance-analyzer@claude-code-plugins-plus": true,
-    "database-index-advisor@claude-code-plugins-plus": true,
-    "database-deadlock-detector@claude-code-plugins-plus": true,
-    "database-health-monitor@claude-code-plugins-plus": true,
-    "database-transaction-monitor@claude-code-plugins-plus": true,
-    "database-partition-manager@claude-code-plugins-plus": true,
-    "database-migration-manager@claude-code-plugins-plus": true,
-    "database-backup-automator@claude-code-plugins-plus": true,
-    "rest-api-generator@claude-code-plugins-plus": true,
-    "graphql-server-builder@claude-code-plugins-plus": true,
-    "api-documentation-generator@claude-code-plugins-plus": true,
-    "api-security-scanner@claude-code-plugins-plus": true,
-    "api-versioning-manager@claude-code-plugins-plus": true,
-    "api-schema-validator@claude-code-plugins-plus": true,
-    "api-contract-generator@claude-code-plugins-plus": true,
-    "api-mock-server@claude-code-plugins-plus": true,
     "unit-test-generator@claude-code-plugins-plus": true,
     "integration-test-runner@claude-code-plugins-plus": true,
     "e2e-test-framework@claude-code-plugins-plus": true,
     "test-coverage-analyzer@claude-code-plugins-plus": true,
     "mutation-test-runner@claude-code-plugins-plus": true,
-    "contract-test-validator@claude-code-plugins-plus": true,
     "performance-test-suite@claude-code-plugins-plus": true,
     "security-test-scanner@claude-code-plugins-plus": true,
     "api-test-automation@claude-code-plugins-plus": true,
-    "chaos-engineering-toolkit@claude-code-plugins-plus": true,
-    "visual-regression-tester@claude-code-plugins-plus": true,
-    "accessibility-test-scanner@claude-code-plugins-plus": true,
-    "ai-commit-gen@claude-code-plugins-plus": true,
-    "agent-context-manager@claude-code-plugins-plus": true,
-    "application-profiler@claude-code-plugins-plus": true,
-    "bottleneck-detector@claude-code-plugins-plus": true,
-    "ai-ml-engineering-pack@claude-code-plugins-plus": true
+    "sql-query-optimizer@claude-code-plugins-plus": true,
+    "database-health-monitor@claude-code-plugins-plus": true,
+    "kubernetes-deployment-creator@claude-code-plugins-plus": true,
+    "gitops-workflow-builder@claude-code-plugins-plus": true,
+    "vulnerability-scanner@claude-code-plugins-plus": true,
+    "secret-scanner@claude-code-plugins-plus": true
   },
   "extraKnownMarketplaces": {
     "claude-code-marketplace": {

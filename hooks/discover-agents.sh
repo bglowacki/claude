@@ -354,105 +354,22 @@ fi
 
 PARALLEL_HINT=$([ -n "$USER_REQUEST" ] && analyze_parallelization "$USER_REQUEST")
 
-# Output
-if [ "$QUIET_MODE" = "false" ]; then
-    if [ -n "$MATCHED_AGENTS" ]; then
-        cat <<EOF
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚨 REQUIRED AGENTS - MUST DELEGATE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-EOF
-
-        if [ ${#MUST_USE_AGENTS[@]} -gt 0 ]; then
-            echo "🔴 MUST USE (Specialized/Proactive):"
-            for agent in "${MUST_USE_AGENTS[@]}"; do
-                echo "   → $agent"
-            done
-            echo
-            echo "⚠️  CRITICAL: These agents MUST handle this request."
-            echo "   DO NOT answer directly. Use: Task(subagent_type=\"$agent\", ...)"
-            echo
-        fi
-
-        if [ ${#SHOULD_USE_AGENTS[@]} -gt 0 ]; then
-            echo "🟡 SHOULD USE (Recommended):"
-            for agent in "${SHOULD_USE_AGENTS[@]}"; do
-                echo "   → $agent"
-            done
-            echo
-        fi
-
-        [[ "$MATCH_METHOD" = "llm" ]] && echo "💡 Deep LLM analysis selected these agents for your request."
-        [[ "$MATCH_METHOD" = "keyword" ]] && echo "💡 Domain keyword matching identified these specialized agents."
-        echo
-        echo "📊 Validation: Run ~/.claude/hooks/validate-agent-usage.sh to check if agents were used"
-        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-        echo
-    else
-        # No agents matched - direct answers are acceptable
-        if [ -n "$USER_REQUEST" ]; then
-            cat <<'EOF'
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✅ NO SPECIALIZED AGENTS NEEDED
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-No domain-specific agents matched this request.
-
-✅ Direct answers are acceptable for:
-   • General questions and explanations
-   • Simple code operations
-   • Clarifications and follow-ups
-   • Basic file operations
-
-💡 If you need specialized expertise, try:
-   • Being more specific about the domain (AWS, Datadog, testing, etc.)
-   • Mentioning specific technologies or frameworks
-   • Asking about best practices or documentation
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-EOF
-        fi
+# Output - compact format to reduce context usage
+if [ -n "$MATCHED_AGENTS" ]; then
+    # Only show matched agents, not verbose instructions
+    if [ ${#MUST_USE_AGENTS[@]} -gt 0 ]; then
+        echo "🔴 MUST USE: $(IFS=', '; echo "${MUST_USE_AGENTS[*]}")"
     fi
-
-    if [ -n "$PARALLEL_HINT" ]; then
-        HINT_TYPE=$(echo "$PARALLEL_HINT" | cut -d: -f1)
-        HINT_MSG=$(echo "$PARALLEL_HINT" | cut -d: -f2-)
-        if [ "$HINT_TYPE" = "PARALLEL_NEEDED" ]; then
-            echo "⚡ PARALLELIZATION REQUIRED:"
-            echo "   $HINT_MSG"
-            echo
-            echo "CRITICAL: Send ONE message with MULTIPLE Task tool calls to run agents in parallel."
-            echo
-        else
-            echo "🔀 PARALLELIZATION HINT:"
-            echo "   $HINT_MSG"
-            echo
-        fi
+    if [ ${#SHOULD_USE_AGENTS[@]} -gt 0 ]; then
+        echo "🟡 SHOULD USE: $(IFS=', '; echo "${SHOULD_USE_AGENTS[*]}")"
     fi
-
-    cat <<'EOF'
-📋 MANDATORY PARALLELIZATION CHECKLIST:
-
-Before executing, you MUST state:
-- Can tasks run independently? [YES/NO]
-- If YES: Executing [N] agents in PARALLEL: [list]
-- If NO: Sequential because: [reason]
-
-HIGH-VALUE PARALLEL PATTERNS:
-• Multi-domain review → Parallel specialized reviewers
-• Implementation + testing → implementation agent || test-automator
-• Multiple items (agents/files/modules) → One agent per item in PARALLEL
-• Testing + documentation → test-automator || documentation-engineer
-
-EOF
-
-    echo "Available agents: $ALL_AGENTS"
-    echo "Available skills: $ALL_SKILLS"
-else
-    [[ -n "$MATCHED_AGENTS" ]] && echo "🎯 Relevant: $MATCHED_AGENTS"
-    echo "Available agents: $ALL_AGENTS"
-    echo "Available skills: $ALL_SKILLS"
 fi
+
+# Parallelization hint (compact)
+if [ -n "$PARALLEL_HINT" ]; then
+    HINT_TYPE=$(echo "$PARALLEL_HINT" | cut -d: -f1)
+    [[ "$HINT_TYPE" = "PARALLEL_NEEDED" ]] && echo "⚡ PARALLEL: Multiple items - use parallel Task calls"
+fi
+
+echo "Available agents: $ALL_AGENTS"
+echo "Available skills: $ALL_SKILLS"

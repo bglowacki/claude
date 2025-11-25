@@ -1,6 +1,6 @@
 ---
 name: debugger
-description: Expert debugger specializing in complex issue diagnosis, root cause analysis, and systematic problem-solving. Use proactively for investigating bugs, analyzing error traces, diagnosing production issues, and resolving intricate software problems.
+description: Expert debugger specializing in complex issue diagnosis, root cause analysis, and systematic problem-solving. Use PROACTIVELY for investigating bugs, analyzing error traces, diagnosing production issues, and resolving intricate software problems.
 tools: Read, Write, Edit, Bash, Glob, Grep
 color: red
 model: sonnet
