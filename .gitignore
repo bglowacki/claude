@@ -19,3 +19,11 @@ history.jsonl
 
 # OS files
 .DS_Store
+
+# Observability dependencies
+observability/node_modules/
+observability/.venv/
+observability/__pycache__/
+observability/*.pyc
+observability/apps/server/events.db
+observability/.env

@@ -12,6 +12,18 @@
     ]
   },
   "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/start-observability.sh",
+            "timeout": 15000
+          }
+        ]
+      }
+    ],
     "UserPromptSubmit": [
       {
         "matcher": "*",
@@ -20,6 +32,47 @@
             "type": "command",
             "command": "$HOME/.claude/hooks/discover-agents.sh",
             "timeout": 60000
+          },
+          {
+            "type": "command",
+            "command": "uv run $HOME/.claude/observability/.claude/hooks/send_event.py --source-app global --event-type UserPromptSubmit",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run $HOME/.claude/observability/.claude/hooks/send_event.py --source-app global --event-type PreToolUse",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run $HOME/.claude/observability/.claude/hooks/send_event.py --source-app global --event-type PostToolUse",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run $HOME/.claude/observability/.claude/hooks/send_event.py --source-app global --event-type SubagentStop",
+            "timeout": 5000
           }
         ]
       }
