@@ -27,3 +27,4 @@ observability/__pycache__/
 observability/*.pyc
 observability/apps/server/events.db
 observability/.env
+plans/
