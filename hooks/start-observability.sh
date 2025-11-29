@@ -26,10 +26,10 @@ if ! lsof -i:4000 > /dev/null 2>&1; then
   cd "$OBSERVABILITY_DIR"
 
   # Start server (port 4000)
-  mise exec -- bun run --cwd apps/server start &
+  nohup mise exec -- bun run --cwd apps/server start > /dev/null 2>&1 &
 
   # Start client (port 5173)
-  mise exec -- bun run --cwd apps/client dev &
+  nohup mise exec -- bun run --cwd apps/client dev > /dev/null 2>&1 &
 
   # Wait for server to be ready
   sleep 2

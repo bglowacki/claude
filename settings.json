@@ -30,11 +30,6 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.claude/hooks/discover-agents.sh",
-            "timeout": 60000
-          },
-          {
-            "type": "command",
             "command": "uv run $HOME/.claude/observability/.claude/hooks/send_event.py --source-app global --event-type UserPromptSubmit",
             "timeout": 5000
           }
@@ -124,7 +119,7 @@
     "superpowers-marketplace": {
       "source": {
         "source": "github",
-        "repo": "anthropics/claude-code-superpowers"
+        "repo": "obra/superpowers-marketplace"
       }
     }
   }
