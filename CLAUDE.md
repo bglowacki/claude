@@ -40,3 +40,5 @@ Use ONE message with MULTIPLE Task calls when:
 - Use `/clear` after discrete tasks
 - Start fresh for major refactoring
 - Quality over quantity in context
+- Parallelize where possible
+- Do not add claude attribution to comits

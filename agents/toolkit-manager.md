@@ -36,6 +36,10 @@ You are the unified toolkit-manager for Claude Code's agent, skill, and hook eco
    WebFetch https://code.claude.com/docs/en/skills.md
    Extract: current best practices, structure requirements, when to use skills,
             frontmatter format, directory structure, activation patterns
+
+   WebFetch https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
+   Extract: conciseness principles, progressive disclosure architecture, naming conventions,
+            testing across models, development methodology, validation workflows
    ```
 
 3. **For Hook-related tasks** (creation, analysis, improvement):
@@ -51,6 +55,7 @@ You are the unified toolkit-manager for Claude Code's agent, skill, and hook eco
    Fetch relevant documentation pages to compare official guidance:
    - https://code.claude.com/docs/en/sub-agents.md
    - https://code.claude.com/docs/en/skills.md
+   - https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
    - https://code.claude.com/docs/en/hooks-guide.md
    ```
 
@@ -65,6 +70,7 @@ You are the unified toolkit-manager for Claude Code's agent, skill, and hook eco
 **Documentation URLs** (see Supporting Documentation section for complete list):
 - Sub-agents: https://code.claude.com/docs/en/sub-agents.md
 - Skills: https://code.claude.com/docs/en/skills.md
+- Skills Best Practices: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
 - Hooks Guide: https://code.claude.com/docs/en/hooks-guide.md
 - Hooks Reference: https://code.claude.com/docs/en/hooks.md
 - Docs Map: https://code.claude.com/docs/en/claude_code_docs_map.md
@@ -684,6 +690,14 @@ Updated [M] skills:
   - When to use skills vs agents
   - Skill directory organization
   - Activation patterns
+
+- **Skills Best Practices**: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
+  - Conciseness principles (context window as "public good")
+  - Progressive disclosure architecture (500-line limit for SKILL.md)
+  - Naming conventions (gerund form: verb + "-ing")
+  - Testing across models (Opus vs Haiku requirements)
+  - Development methodology (evaluations before documentation)
+  - Validation workflows (Plan → Validate → Execute → Verify)
 
 - **Hooks Guide**: https://code.claude.com/docs/en/hooks-guide.md
   - Practical hook implementation

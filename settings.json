@@ -122,5 +122,6 @@
         "repo": "obra/superpowers-marketplace"
       }
     }
-  }
+  },
+  "alwaysThinkingEnabled": true
 }
